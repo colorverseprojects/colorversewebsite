@@ -1,0 +1,411 @@
+/* --- 1. COLOR THEMES (CHANGE COLORS HERE) --- */
+:root {
+    /* Main Backgrounds */
+    --bg-card: #111111;      
+    --bg-card-alt: #1a1a1a;  
+    
+    /* Text Colors */
+    --text-primary: #ffffff; 
+    --text-muted: #ffffff;   
+    
+    /* Borders & Accents (Strictly White) */
+    --border-color: #ffffff; 
+    --accent: #ffffff;       
+}
+
+/* --- 2. GLOBAL DEFAULTS --- */
+* { box-sizing: border-box; }
+html, body {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    
+    /* BLACK BACKGROUND WITH WHITE GEOMETRIC DESIGN */
+    background-image: url('https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    color: var(--text-primary); 
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- PREVENT GLITCHING ON WINDOW RESIZE --- */
+.resize-animation-stopper * {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Ensure no words break the layout and cause horizontal scrolling */
+.portfolio-isolated-zone {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* FIX FOR PURPLE ICONS/LINKS - Forces all links to obey the white theme */
+a, a:visited, a:hover, a:active {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+/* --- 3. CONSISTENT BORDERS & CONTAINER LIFT EFFECTS --- */
+
+/* Every major layout piece and card gets the exact same 1px white outline */
+.grid-header, .grid-nav, .grid-footer, .welcome-banner, .about-hero, 
+.approach-card, .fixed-card, .service-card, .pricing-card, 
+.testimonial-card, .contact-card, .discord-card, .info-block, .service-icon-box,
+.about-detailed-card, .about-image-wrapper {
+    border: 1px solid var(--border-color); 
+    background-color: var(--bg-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Structural elements glow only (so they don't break the layout by moving) */
+.grid-header:hover, .grid-nav:hover, .grid-footer:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Main Content Cards get a consistent lift AND the exact same white shadow */
+.welcome-banner:hover, .about-hero:hover, .approach-card:hover, 
+.fixed-card:hover, .service-card:hover, .pricing-card:hover, 
+.testimonial-card:hover, .contact-card:hover, .discord-card:hover, .info-block:hover,
+.about-detailed-card:hover, .about-image-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* --- 4. BUTTONS & LINK BLOCKS (Restored and Unified) --- */
+
+/* Side Nav List Links & Social Grids */
+.nav-links-list a, .nav-socials a, .contact-socials-grid a {
+    border: 1px solid var(--border-color); 
+    background: transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-links-list a:hover, .nav-socials a:hover, .contact-socials-grid a:hover {
+    background-color: var(--bg-card-alt);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Major Call-to-Action Buttons */
+.nav-hire-btn, .about-more-btn, .discord-btn {
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-primary);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Invert colors cleanly on hover for readability */
+.nav-hire-btn:hover, .about-more-btn:hover, .discord-btn:hover {
+    background: var(--text-primary);
+    color: #000000; 
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure text and icons inside buttons also flip to black */
+.nav-hire-btn:hover span, .nav-hire-btn:hover i, 
+.about-more-btn:hover span, .about-more-btn:hover i, 
+.discord-btn:hover span, .discord-btn:hover i {
+    color: #000000;
+}
+
+/* --- 5. TEXT HOVER POP & FLUID TYPOGRAPHY --- */
+
+/* FLUID TYPOGRAPHY: Dynamically scales font sizes based on screen width */
+.folder-label { font-size: clamp(1.3rem, 2.5vw, 1.5rem); }
+.section-title { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.welcome-banner h2 { font-size: clamp(1.6rem, 3vw, 2rem); }
+.welcome-banner p { font-size: clamp(1rem, 2vw, 1.1rem); }
+.service-text h3 { font-size: clamp(1.1rem, 2vw, 1.3rem); }
+.pricing-card h3 { font-size: clamp(1.1rem, 2vw, 1.25rem); }
+.price-tag { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
+.about-description, .approach-text p, .card-info-zone p, .service-text p, 
+.pricing-desc, .info-block p, .testi-text, .contact-info p, .pricing-footer p, .includes-title,
+.about-detailed-text p, .biography-main-title {
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem); /* Slightly larger for document feel */
+    line-height: 1.8; /* Generous line height for readability */
+}
+
+/* Specific Sizes for Biography Titles */
+.biography-main-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+
+/* Selects every piece of text on the site for interaction */
+.header-brand-text, .nav-name, .nav-bio, .folder-label, 
+.section-title, .about-description, .approach-text h3, .approach-text p, 
+.card-info-zone h3, .card-info-zone p, .service-card h3, .service-card p, 
+.pricing-card h3, .price-tag, .pricing-desc p, .pricing-features li, .testi-text, .testi-author h4, 
+.testi-author span, .contact-info h3, .contact-info p, .contact-info h4, 
+.contact-item span, .discord-card h3, .discord-card p, .grid-footer p, 
+.welcome-banner h2, .welcome-banner p, .info-block h4, .info-block p, .info-block strong, .pricing-badge,
+.pricing-footer p, .price-sub, .about-detailed-text p, .biography-main-title {
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block; 
+    cursor: default;
+}
+
+/* Prevent blocks of text from breaking out of layout */
+.about-description, .approach-text p, .testi-text, .contact-info p, 
+.discord-card p, .nav-bio, .welcome-banner p, .card-info-zone p, .info-block p, .pricing-desc p, .pricing-features li,
+.pricing-footer p, .service-card p, .includes-title, .about-detailed-text p {
+    display: block; 
+}
+
+/* Price Sub-text formatting */
+.price-sub { font-size: clamp(0.9rem, 1.5vw, 1.2rem); font-weight: normal; }
+
+/* Apply the exact same text-pop universally */
+.header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover, 
+.section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover, 
+.card-info-zone h3:hover, .card-info-zone p:hover, .service-card h3:hover, .service-card p:hover, 
+.pricing-card h3:hover, .price-tag:hover, .pricing-desc p:hover, .pricing-features li:hover, .testi-text:hover, .testi-author h4:hover, 
+.testi-author span:hover, .contact-info h3:hover, .contact-info p:hover, .contact-info h4:hover, 
+.contact-item span:hover, .discord-card h3:hover, .discord-card p:hover, .grid-footer p:hover,
+.welcome-banner h2:hover, .welcome-banner p:hover, .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
+.pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .about-detailed-text p:hover,
+.biography-main-title:hover {
+    transform: translateY(-3px);
+    text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* --- 6. ICON & IMAGE LIFT (No Resizing, Uniform Borders) --- */
+
+/* --- SQUARED ARROW STYLES --- */
+.header-skull-icon.squared-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Size of the square */
+    height: 40px;
+    border: 2px solid var(--border-color); /* White outline */
+    border-radius: 8px; /* Slightly rounded corners */
+    background-color: transparent; /* Match your card backgrounds */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header-skull-icon.squared-arrow i {
+    color: var(--text-primary); /* Pure white arrow */
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect: Invert colors for visibility */
+.header-skull-icon.squared-arrow:hover {
+    background-color: var(--text-primary); /* White fill */
+    transform: translateY(-2px); /* Keep your existing lift effect */
+}
+
+.header-skull-icon.squared-arrow:hover i {
+    color: #000000; /* Black arrow on white background */
+}
+
+.pricing-icon, .quote-icon, 
+.contact-item i, .discord-logo, 
+.nav-avatar-container img, .about-image img, .circle-profile-img, 
+.testi-author img, .skill-tag, .info-icon, .service-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+
+/* Header Logo Specific Fix - Ensures Perfect Circle Hover */
+.header-logo-container img {
+    height: 40px; 
+    width: 40px; 
+    object-fit: cover; 
+    display: block; 
+    flex-shrink: 0; 
+    border-radius: 50%; /* Forces a perfect circle */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-icon:hover, 
+.quote-icon:hover, .contact-item i:hover, .discord-logo:hover, .info-icon:hover, .service-icon:hover {
+    transform: translateY(-3px);
+}
+
+.header-logo-container img:hover, .nav-avatar-container img:hover, 
+.about-image img:hover, .circle-profile-img:hover, 
+.testi-author img:hover, .skill-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* --- 7. STRUCTURAL LAYOUT RULES --- */
+.grid-skeleton {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "nav header" "nav main" "nav footer";
+    height: 100%; 
+}
+
+/* MODIFIER FOR PAGES WITHOUT THE SIDEBAR (e.g. About Page) */
+.grid-skeleton.no-nav {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "header" 
+        "main" 
+        "footer";
+}
+
+.grid-header { grid-area: header; padding: 15px 30px; z-index: 1000; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.header-right { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
+.header-brand-text { margin: 0; font-weight: bold; white-space: nowrap; }
+
+.grid-main { grid-area: main; padding: 40px 30px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border-color) transparent; background-color: transparent; }
+.grid-main::-webkit-scrollbar { width: 8px; }
+.grid-main::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+.portfolio-isolated-zone { max-width: 1300px; margin: 0 auto; }
+
+.folder-label { border-left: 4px solid var(--border-color); padding-left: 15px; margin-bottom: 30px; }
+
+/* --- NEW ABOUT DETAILED PAGE STYLES (Virtual PDF/Document layout) --- */
+.about-page-container { margin-bottom: 60px; }
+
+/* Centralized Document Layout */
+.about-detailed-card.virtual-page {
+    border-radius: 15px; 
+    padding: 60px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px; /* Constrains the entire "page" for better readability */
+    margin: 60px auto 0; /* Ensures room for the absolute tab above */
+    position: relative; /* Anchor point for internal elements */
+}
+
+/* PERFECT EDGE ALIGNMENT TAB: 
+   Sits exactly above the card, perfectly aligned with the left border axis. 
+   Will never misalign regardless of screen size.
+*/
+.biography-edge-tab {
+    position: absolute;
+    bottom: 100%; /* Places it directly above the card */
+    left: -1px; /* Aligns perfectly with the left outer border of the card */
+    margin: 0 0 15px 0; /* Space between the text and the top border */
+    white-space: nowrap; /* Prevents wrapping if screen gets very small */
+}
+
+/* Centered main title above the image */
+.biography-main-title {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 40px 0; /* Space between title and image */
+    font-weight: bold;
+}
+
+/* --- THE ZOOM-OUT EFFECT FOR THE BIOGRAPHY IMAGE --- */
+.about-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 600px; /* Safe height limit */
+    border-radius: 10px;
+    margin-bottom: 50px; /* Space between image header and text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures the blurred background doesn't leak out during zoom */
+    background-color: var(--bg-card-alt);
+}
+
+/* Blurred background copy of the image */
+.about-bg-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    filter: blur(25px) brightness(0.3); /* Heavy blur and darken to make foreground pop */
+    z-index: 1;
+    transform: scale(1.25); /* Starts extra zoomed in */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Silky smooth transition */
+}
+
+/* Foreground image */
+.about-detailed-img {
+    position: relative;
+    z-index: 2; /* Sits on top of the blurred background */
+    width: 100%;
+    max-height: 600px;
+    height: auto; 
+    object-fit: contain; /* Ensures head-to-toe visibility */
+    display: block;
+    transform: scale(1.15); /* Base state is zoomed in slightly */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Silky smooth transition */
+}
+
+/* THE MAGIC: Hovering the outer card triggers both layers to beautifully zoom out. 
+   The background stays slightly scaled to hide edges.
+*/
+.about-detailed-card:hover .about-detailed-img {
+    transform: scale(1);
+}
+
+.about-detailed-card:hover .about-bg-blur {
+    transform: scale(1.1); 
+}
+
+/* Text formatted like a professional document */
+.about-detailed-text {
+    width: 100%;
+    max-width: 800px; /* Ideal reading width */
+    text-align: left;
+}
+.about-detailed-text p {
+    margin-bottom: 25px;
+}
+.about-detailed-text p:last-child {
+    margin-bottom: 0;
+}
+
+.grid-footer { grid-area: footer; padding: 15px; text-align: center; z-index: 1000; }
+.grid-footer p { margin: 0; }
+
+/* ======================================================================= */
+/* RESPONSIVE LAYOUT FIXES: TABLET & iPAD PRO (1200px)                     */
+/* ======================================================================= */
+@media (max-width: 1200px) {
+    /* Reduce padding on the virtual page for tablets */
+    .about-detailed-card.virtual-page {
+        padding: 60px 40px 40px; 
+        margin: 50px auto 0; /* Keep top margin for tab */
+    }
+    .about-image-wrapper {
+        margin-bottom: 30px;
+    }
+    .biography-main-title {
+        margin-bottom: 30px;
+    }
+}
+
+/* ======================================================================= */
+/* MODIFIED: MOBILE NAVIGATION & TABLET STACKING (992px)                   */
+/* ======================================================================= */
+@media (max-width: 992px) {
+    .grid-skeleton { grid-template-columns: 1fr; grid-template-areas: "header" "main" "footer"; }
+    .grid-nav { display: none; }
+}
+
+/* ======================================================================= */
+/* RESPONSIVE LAYOUT FIXES: MOBILE PHONES (768px)                          */
+/* ======================================================================= */
+@media (max-width: 768px) {
+    /* Tighten up the virtual page on mobile so it doesn't waste space */
+    .about-detailed-card.virtual-page {
+        padding: 50px 20px 30px; 
+        margin: 45px auto 0; /* Ensures room for absolute tab */
+    }
+    
+    /* REDUCE LINE HEIGHT SO CARDS DON'T LOOK LIKE TALL NOODLES */
+    .about-detailed-text p {
+        line-height: 1.5; 
+    }
+    
+    /* biography specific adjustments for mobile */
+    .biography-main-title { margin-bottom: 25px; }
+    .about-image-wrapper { margin-bottom: 30px; }
+}

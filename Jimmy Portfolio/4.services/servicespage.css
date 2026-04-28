@@ -1,0 +1,292 @@
+/* --- 1. COLOR THEMES (CHANGE COLORS HERE) --- */
+:root {
+    /* Main Backgrounds */
+    --bg-card: #111111;      
+    --bg-card-alt: #1a1a1a;  
+    
+    /* Text Colors */
+    --text-primary: #ffffff; 
+    --text-muted: #ffffff;   
+    
+    /* Borders & Accents (Strictly White) */
+    --border-color: #ffffff; 
+    --accent: #ffffff;       
+}
+
+/* --- 2. GLOBAL DEFAULTS --- */
+* { box-sizing: border-box; }
+html, body {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    
+    /* BLACK BACKGROUND WITH WHITE GEOMETRIC DESIGN */
+    background-image: url('https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    color: var(--text-primary); 
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Ensure no words break the layout and cause horizontal scrolling */
+.portfolio-isolated-zone {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* FIX FOR PURPLE ICONS/LINKS - Forces all links to obey the white theme */
+a, a:visited, a:hover, a:active {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+/* --- 3. CONSISTENT BORDERS & CONTAINER LIFT EFFECTS --- */
+
+.grid-header, .grid-nav, .grid-footer, .welcome-banner, .about-hero, 
+.approach-card, .fixed-card, .service-card, .pricing-card, 
+.testimonial-card, .contact-card, .discord-card, .info-block, .service-icon-box,
+.about-detailed-card, .about-image-wrapper {
+    border: 1px solid var(--border-color); 
+    background-color: var(--bg-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-header:hover, .grid-nav:hover, .grid-footer:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.welcome-banner:hover, .about-hero:hover, .approach-card:hover, 
+.fixed-card:hover, .service-card:hover, .pricing-card:hover, 
+.testimonial-card:hover, .contact-card:hover, .discord-card:hover, .info-block:hover,
+.about-detailed-card:hover, .about-image-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* --- 4. BUTTONS & LINK BLOCKS --- */
+
+.nav-hire-btn, .about-more-btn, .discord-btn {
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-primary);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 12px 28px; 
+    font-weight: bold; 
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-hire-btn:hover, .about-more-btn:hover, .discord-btn:hover {
+    background: var(--text-primary);
+    color: #000000; 
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.nav-hire-btn:hover span, .nav-hire-btn:hover i, 
+.about-more-btn:hover span, .about-more-btn:hover i, 
+.discord-btn:hover span, .discord-btn:hover i {
+    color: #000000;
+}
+
+.about-more-btn i { margin-right: 8px; }
+
+/* --- 5. TEXT HOVER POP & FLUID TYPOGRAPHY --- */
+
+.folder-label { 
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem); 
+    border-left: 4px solid var(--border-color); 
+    padding-left: 15px; 
+}
+.biography-main-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+
+.header-brand-text, .folder-label, .grid-footer p, .biography-main-title {
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block; 
+    cursor: default;
+}
+
+.header-brand-text:hover, .folder-label:hover, .grid-footer p:hover, .biography-main-title:hover {
+    transform: translateY(-3px);
+    text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* --- 6. ICON LIFT --- */
+
+.header-skull-icon.squared-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; 
+    height: 40px;
+    border: 2px solid var(--border-color); 
+    border-radius: 8px; 
+    background-color: transparent; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header-skull-icon.squared-arrow i {
+    color: var(--text-primary); 
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.header-skull-icon.squared-arrow:hover {
+    background-color: var(--text-primary); 
+    transform: translateY(-2px); 
+}
+
+.header-skull-icon.squared-arrow:hover i {
+    color: #000000; 
+}
+
+.header-logo-container img {
+    height: 40px; 
+    width: 40px; 
+    object-fit: cover; 
+    display: block; 
+    flex-shrink: 0; 
+    border-radius: 50%; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-logo-container img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* --- 7. STRUCTURAL LAYOUT RULES --- */
+.grid-skeleton {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "nav header" "nav main" "nav footer";
+    height: 100%; 
+}
+
+.grid-skeleton.no-nav {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "main" "footer";
+}
+
+.grid-header { grid-area: header; padding: 15px 30px; z-index: 1000; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.header-right { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
+.header-brand-text { margin: 0; font-weight: bold; white-space: nowrap; }
+
+.grid-main { grid-area: main; padding: 40px 30px; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: var(--border-color) transparent; background-color: transparent; }
+.grid-main::-webkit-scrollbar { width: 8px; }
+.grid-main::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+.portfolio-isolated-zone { max-width: 1300px; margin: 0 auto; }
+
+.grid-footer { grid-area: footer; padding: 15px; text-align: center; z-index: 1000; }
+.grid-footer p { margin: 0; }
+
+/* --- 8. DOCUMENT SPECIFIC PAGE STYLES --- */
+.about-page-container { margin-bottom: 60px; }
+
+.about-detailed-card.virtual-page {
+    border-radius: 15px; 
+    padding: 60px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px; 
+    margin: 60px auto 0; 
+    position: relative; 
+}
+
+.biography-edge-tab {
+    position: absolute;
+    bottom: 100%; 
+    left: -1px; 
+    margin: 0 0 15px 0; 
+    white-space: nowrap; 
+}
+
+.biography-main-title {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 30px 0; 
+    font-weight: bold;
+}
+
+.doc-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+/* --- DOUBLE HEIGHT SCALING FOR 2 PAGES --- */
+.doc-embed-container {
+    width: 100%;
+    max-width: 850px; 
+    height: 2200px; /* Double height to fit both pages perfectly */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: white; 
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; 
+}
+
+.doc-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 50%; 
+    transform: translateX(-50%) scale(1); 
+    transform-origin: top center; 
+    width: 850px;
+    height: 2200px; /* Double height */
+    border: none;
+    pointer-events: none; 
+}
+
+/* Laptops / Smaller Desktop */
+@media (max-width: 1200px) {
+    .about-detailed-card.virtual-page {
+        padding: 60px 40px 40px; 
+        margin: 50px auto 0; 
+    }
+    .doc-embed-container { height: 1760px; } /* 2200 * 0.8 */
+    .doc-embed-container iframe { transform: translateX(-50%) scale(0.8); }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .grid-skeleton { grid-template-columns: 1fr; grid-template-areas: "header" "main" "footer"; }
+    .doc-embed-container { height: 1430px; } /* 2200 * 0.65 */
+    .doc-embed-container iframe { transform: translateX(-50%) scale(0.65); }
+}
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+    .about-detailed-card.virtual-page {
+        padding: 40px 15px 30px; 
+        margin: 45px auto 0; 
+    }
+    .doc-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .doc-actions .about-more-btn {
+        width: 100%; 
+    }
+    
+    .doc-embed-container { height: 924px; } /* 2200 * 0.42 */
+    .doc-embed-container iframe { transform: translateX(-50%) scale(0.42); }
+}
+
+/* Very Small Phones */
+@media (max-width: 480px) {
+    .doc-embed-container { height: 770px; } /* 2200 * 0.35 */
+    .doc-embed-container iframe { transform: translateX(-50%) scale(0.35); }
+}

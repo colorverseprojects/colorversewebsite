@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hidden Vault | ColorVerse一緒</title>
+        
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ℛ</text></svg>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="../7. Hidden Portfolio/hiddenportfoliopage.css">
+    </head>
+    <body>
+
+        <div class="flash-overlay"></div>
+
+        <div class="grid-skeleton no-nav">
+            
+            <header class="grid-header"> 
+                <div class="header-inner">
+                    <div class="header-left">
+                        <a href="../index.html" title="Back to Home" class="header-skull-icon squared-arrow">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="header-right">
+                        <div class="header-logo-container">
+                            <img src="../x.indexpictures/colorverselogo.png" alt="logo" class="hover-glow-logo">
+                        </div>
+                        <p class="header-brand-text hover-glow-text">ColorVerse 彩境坊</p>
+                    </div>
+                </div>
+            </header>
+
+            <main class="grid-main">
+                <div class="portfolio-isolated-zone">
+                    
+                    <section class="interactive-folder-section">
+                        <div class="interactive-folder-container">
+                            
+                            <div class="interactive-folder" id="main-folder">
+
+                                <div class="folder-back"></div>
+                                
+                                <div class="folder-contents">
+                                    <div class="abstract-paper paper-1"></div>
+                                    <div class="abstract-paper paper-2"></div>
+                                    
+                                    <div class="alien-character">
+                                        <img src="../7. Hidden Portfolio/x.hiddenportfoliopictures/aliengif.gif" alt="Running Alien" class="alien-gif">
+                                    </div>
+                                </div>
+
+                                <div class="folder-front">
+                                    <i class="fa fa-folder-open-o folder-icon"></i>
+                                    <span class="folder-hint hover-glow-text">Click to Reveal</span>
+                                </div>
+                            </div>
+
+                            <div class="folder-details">
+                                <h3 class="folder-project-title hover-glow-text"><span class="warning-text">WARNING:</span> YOU'VE BEEN HACKED...</h3>
+                                <p class="folder-project-desc hover-glow-text">... Just kidding! Welcome to the hidden vault. This is the place where I reserve my most memorable moments, experimental ideas, and genuinely cool stuff.</p>
+                                
+                                <button id="mute-btn" class="inline-mute-btn hidden" onclick="toggleMute()" title="Mute/Unmute Audio">
+                                    <i class="fa fa-volume-up"></i>
+                                </button>
+                                
+                                <div class="folder-gallery">
+                                    <img src="https://t4.ftcdn.net/jpg/04/75/33/29/360_F_475332975_bNnuL8wMppvQvlnDsECb7gL5USROjUO1.jpg" alt="Project Image 1">
+                                    <img src="https://media.allaboutvision.com/cms/caas/v1/media/405360/data/674d3f5c105605324e9e217a73cd2c61/optical-illusion-small.jpg" alt="Project Image 2">
+                                    <img src="https://owensvillefamilyeyecare.com/wp-content/uploads/2026/01/optical-illusions-2026_620.jpg" alt="Project Image 3">
+                                    <img src="https://www.syfy.com/sites/syfy/files/rotatingsnakes_simple.jpg" alt="Project Image 4">
+                                </div>
+
+                                <a href="../3. portfolio/portfolio.html" class="about-more-btn">
+                                    <i class="fa fa-link"></i> View Business Projects
+                                </a>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </div>
+            </main>
+
+            <footer class="grid-footer">
+                
+                <div class="speed-lines-container">
+                    <div class="speed-line sl-1"></div>
+                    <div class="speed-line sl-2"></div>
+                    <div class="speed-line sl-3"></div>
+                    <div class="speed-line sl-4"></div>
+                    <div class="speed-line sl-5"></div>
+                    <div class="speed-line sl-6"></div>
+                    <div class="speed-line sl-7"></div>
+                    
+                    <div class="spaceship sl-ship-1"><img src="../7. Hidden Portfolio/x.hiddenportfoliopictures/spacegif.gif" alt="Spaceship"></div>
+                    <div class="spaceship sl-ship-2"><img src="../7. Hidden Portfolio/x.hiddenportfoliopictures/spacegif.gif" alt="Spaceship"></div>
+                    <div class="spaceship sl-ship-3"><img src="../7. Hidden Portfolio/x.hiddenportfoliopictures/spacegif.gif" alt="Spaceship"></div>
+                    <div class="spaceship sl-ship-4"><img src="../7. Hidden Portfolio/x.hiddenportfoliopictures/spacegif.gif" alt="Spaceship"></div>
+                    <div class="spaceship sl-ship-5"><img src="../7. Hidden Portfolio/x.hiddenportfoliopictures/spacegif.gif" alt="Spaceship"></div>
+                </div>
+
+                <div class="footer-content">
+                    <p class="hover-glow-text">© Jaime Salcedo All Rights Reserved</p>
+                </div>
+            </footer>
+        </div>
+
+        <div id="image-modal" class="image-modal hidden">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="expanded-img" alt="Zoomed Image">
+        </div>
+
+        <audio id="bg-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+        <audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3"></audio>
+        
+        <script>
+            const folder = document.getElementById('main-folder');
+            const audio = document.getElementById('bg-audio');
+            const clickSound = document.getElementById('click-sound');
+            const muteBtn = document.getElementById('mute-btn');
+            const muteIcon = muteBtn.querySelector('i');
+
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('expanded-img');
+            const galleryImgs = document.querySelectorAll('.folder-gallery img');
+
+            folder.addEventListener('click', () => {
+                folder.classList.toggle('open');
+                
+                document.body.classList.toggle('folder-is-open');
+                
+                if (folder.classList.contains('open')) {
+                    clickSound.volume = 0.6;
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(e => console.log("Click sound prevented."));
+
+                    audio.volume = 0.4;
+                    audio.muted = false; 
+                    audio.play().catch(e => console.log("Audio autoplay prevented by browser."));
+                    
+                    muteBtn.classList.remove('hidden');
+                    muteIcon.className = 'fa fa-volume-up';
+                } else {
+                    audio.pause();
+                    muteBtn.classList.add('hidden');
+                }
+            });
+
+            function toggleMute() {
+                if (audio.muted) {
+                    audio.muted = false;
+                    muteIcon.className = 'fa fa-volume-up';
+                } else {
+                    audio.muted = true;
+                    muteIcon.className = 'fa fa-volume-off';
+                }
+            }
+
+            galleryImgs.forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.classList.remove('hidden');
+                    setTimeout(() => modal.classList.add('active'), 10);
+                    modalImg.src = this.src;
+                });
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target !== modalImg) {
+                    modal.classList.remove('active');
+                    setTimeout(() => modal.classList.add('hidden'), 300);
+                }
+            });
+        </script>
+
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+
+    </body>
+</html>
