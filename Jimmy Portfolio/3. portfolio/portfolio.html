@@ -24,9 +24,9 @@
                     
                     <div class="header-right">
                         <div class="header-logo-container">
-                            <img src="../x.indexpictures/colorverselogo.png" alt="logo" class="hover-glow-logo">
+                            <img src="../x.indexpictures/colorverselogo.png" alt="logo">
                         </div>
-                        <p class="header-brand-text hover-glow-text">ColorVerse 彩境坊</p>
+                        <p class="header-brand-text">ColorVerse 彩境坊</p>
                     </div>
                 </div>
             </header>
@@ -36,16 +36,23 @@
                     
                     <section class="about-page-container">
                         
-                        <div class="about-detailed-card virtual-page">
+                        <div class="about-detailed-card virtual-page scroll-pop">
                             
-                            <h2 class="folder-label biography-edge-tab hover-glow-text">Design Vault</h2>
+                            <h2 class="folder-label biography-edge-tab">Design Vault</h2>
                             
-                            <h1 class="biography-main-title hover-glow-text">Interactive Gallery</h1>
-                            
-                            <p class="contact-subtitle hover-glow-text">A curated collection of my visual designs, layouts, and creative experiments. Explore the fully interactive board below.</p>
+                            <h1 class="biography-main-title">Interactive Gallery</h1>
 
-                            <div class="gallery-embed-wrapper">
-                                <iframe src="https://jimmysprojecthub.notion.site/ebd//34f1e47bfdb78081a780f244a8fb6626?v=34f1e47bfdb780449a58000c12122442" width="100%" height="600" frameborder="0" allowfullscreen class="notion-iframe"></iframe>
+                            <div class="gallery-actions">
+                                <button id="fullscreenBtn" class="about-more-btn">
+                                    <i class="fa fa-arrows-alt"></i> View Full Screen
+                                </button>
+                                <a href="https://jimmysprojecthub.notion.site/ebd//34f1e47bfdb78081a780f244a8fb6626?v=34f1e47bfdb780449a58000c12122442" target="_blank" class="about-more-btn">
+                                    <i class="fa fa-external-link"></i> Open in New Tab
+                                </a>
+                            </div>
+
+                            <div class="gallery-embed-wrapper" id="galleryWrapper">
+                                <iframe src="https://jimmysprojecthub.notion.site/ebd//34f1e47bfdb78081a780f244a8fb6626?v=34f1e47bfdb780449a58000c12122442" width="100%" height="700" frameborder="0" allowfullscreen class="notion-iframe"></iframe>
                             </div>
                             
                         </div>
@@ -57,21 +64,116 @@
 
             <footer class="grid-footer">
                 <div class="footer-content">
-                    <p class="hover-glow-text">© Jaime Salcedo All Rights Reserved</p>
+                    <p>© Jaime Salcedo All Rights Reserved</p>
                 </div>
+                
+                <div class="dock-target"></div>
+
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
             </footer>
         </div>
 
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    document.body.classList.add('resize-animation-stopper');
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        document.body.classList.remove('resize-animation-stopper');
+                    }, 400);
+                });
+
+                // FULLSCREEN API
+                const fullscreenBtn = document.getElementById('fullscreenBtn');
+                const galleryWrapper = document.getElementById('galleryWrapper');
+                const fullscreenIcon = fullscreenBtn.querySelector('i');
+
+                fullscreenBtn.addEventListener('click', () => {
+                    if (!document.fullscreenElement) {
+                        if (galleryWrapper.requestFullscreen) {
+                            galleryWrapper.requestFullscreen();
+                        } else if (galleryWrapper.webkitRequestFullscreen) {
+                            galleryWrapper.webkitRequestFullscreen();
+                        } else if (galleryWrapper.msRequestFullscreen) {
+                            galleryWrapper.msRequestFullscreen();
+                        }
+                        fullscreenIcon.classList.remove('fa-arrows-alt');
+                        fullscreenIcon.classList.add('fa-compress');
+                        fullscreenBtn.innerHTML = '<i class="fa fa-compress"></i> Exit Full Screen';
+                    } else {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                        fullscreenIcon.classList.remove('fa-compress');
+                        fullscreenIcon.classList.add('fa-arrows-alt');
+                        fullscreenBtn.innerHTML = '<i class="fa fa-arrows-alt"></i> View Full Screen';
+                    }
+                });
+
+                document.addEventListener('fullscreenchange', () => {
+                    if (!document.fullscreenElement) {
+                        fullscreenBtn.innerHTML = '<i class="fa fa-arrows-alt"></i> View Full Screen';
+                    }
+                });
+
+                // POP EFFECT
+                const popElements = document.querySelectorAll('.scroll-pop');
+                const popObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('show-pop');
+                        } else {
+                            entry.target.classList.remove('show-pop'); 
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                popElements.forEach(el => popObserver.observe(el));
+
+                // DOCKING MATH
+                const topBtn = document.getElementById("scrollTopBtn");
+                const dockTarget = document.querySelector('.dock-target');
+                
+                function checkDocking() {
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrollPos > 100 && documentHeight > windowHeight) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        const fixedTop = windowHeight - bottomOffset - btnHeight;
+
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', checkDocking);
+                checkDocking(); 
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            });
         </script>
     </body>
 </html>

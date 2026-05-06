@@ -1,89 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | ColorVerse一緒</title>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ℛ</text></svg>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <link rel="stylesheet" href="../2.resume/resumepage.css">
-</head>
-<body>
-
-    <div class="grid-skeleton no-nav">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Resume | ColorVerse一緒</title>
         
-        <header class="grid-header"> 
-            <div class="header-inner">
-                <div class="header-left">
-                    <a href="../index.html" title="Back to Home" class="header-skull-icon squared-arrow">
-                        <i class="fa fa-arrow-left"></i>
-                    </a>
-                </div>
-                
-                <div class="header-right">
-                    <div class="header-logo-container">
-                        <img src="../x.indexpictures/colorverselogo.png" alt="logo">
-                    </div>
-                    <p class="header-brand-text">ColorVerse 彩境坊</p>
-                </div>
-            </div>
-        </header>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ℛ</text></svg>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="../2.resume/resumepage.css">
+    </head>
+    <body>
 
-        <main class="grid-main">
-            <div class="portfolio-isolated-zone">
-                
-                <section class="about-page-container">
-                    
-                    <div class="about-detailed-card virtual-page">
-                        
-                        <h2 class="folder-label biography-edge-tab">Curriculum Vitae</h2>
-                        
-                        <h1 class="biography-main-title">Qualifications Summary</h1>
-
-                        <div class="resume-actions">
-                            <a href="https://docs.google.com/document/d/14YRjyCczxbQRV_lHi_lI4PwSRhoFmIehLG_R7CqOUVQ/edit?usp=sharing" target="_blank" class="about-more-btn">
-                                <i class="fa fa-arrows-alt"></i> View Full Screen
-                            </a>
-                            <a href="https://docs.google.com/document/d/14YRjyCczxbQRV_lHi_lI4PwSRhoFmIehLG_R7CqOUVQ/export?format=pdf" class="about-more-btn">
-                                <i class="fa fa-download"></i> Download PDF
-                            </a>
-                        </div>
-                        
-                        <div class="resume-embed-container">
-                            <iframe 
-                                src="https://docs.google.com/document/d/14YRjyCczxbQRV_lHi_lI4PwSRhoFmIehLG_R7CqOUVQ/preview" 
-                                title="Jaime Salcedo Resume"
-                                scrolling="no"
-                                frameborder="0">
-                            </iframe>
-                        </div>
-                        
+        <div class="grid-skeleton no-nav">
+            
+            <header class="grid-header"> 
+                <div class="header-inner">
+                    <div class="header-left">
+                        <a href="../index.html" title="Back to Home" class="header-skull-icon squared-arrow">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
                     </div>
                     
-                </section>
+                    <div class="header-right">
+                        <div class="header-logo-container">
+                            <img src="../x.indexpictures/colorverselogo.png" alt="logo">
+                        </div>
+                        <p class="header-brand-text">ColorVerse 彩境坊</p>
+                    </div>
+                </div>
+            </header>
 
-            </div>
-        </main>
+            <main class="grid-main">
+                <div class="portfolio-isolated-zone">
+                    
+                    <section class="about-page-container">
+                        
+                        <div class="about-detailed-card virtual-page scroll-pop">
+                            
+                            <h2 class="folder-label biography-edge-tab">Curriculum Vitae</h2>
+                            
+                            <h1 class="biography-main-title">Qualifications Summary</h1>
 
-        <footer class="grid-footer">
-            <div class="footer-content">
-                <p>© Jaime Salcedo All Rights Reserved</p>
-            </div>
-        </footer>
-    </div>
+                            <div class="resume-actions">
+                                <a href="https://docs.google.com/document/d/14YRjyCczxbQRV_lHi_lI4PwSRhoFmIehLG_R7CqOUVQ/preview" target="_blank" class="about-more-btn">
+                                    <i class="fa fa-arrows-alt"></i> View Full Screen
+                                </a>
+                                <a href="https://docs.google.com/document/d/14YRjyCczxbQRV_lHi_lI4PwSRhoFmIehLG_R7CqOUVQ/export?format=pdf" class="about-more-btn">
+                                    <i class="fa fa-download"></i> Download PDF
+                                </a>
+                            </div>
+                            
+                            <div class="resume-embed-container" id="resumeWrapper">
+                                <iframe 
+                                    class="resume-iframe"
+                                    id="resumeIframe"
+                                    src="https://docs.google.com/document/d/14YRjyCczxbQRV_lHi_lI4PwSRhoFmIehLG_R7CqOUVQ/preview" 
+                                    title="Jaime Salcedo Resume"
+                                    scrolling="no"
+                                    frameborder="0">
+                                </iframe>
+                            </div>
+                            
+                        </div>
+                        
+                    </section>
 
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
+                </div>
+            </main>
+
+            <footer class="grid-footer">
+                <div class="footer-content">
+                    <p>© Jaime Salcedo All Rights Reserved</p>
+                </div>
+                
+                <div class="dock-target"></div>
+
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
+            </footer>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                // --- CUSTOM RESUME SCALING ENGINE (AUTO-UPDATES LIVE) ---
+                // This mathematically scales the LIVE iframe so it never cuts off on phones/zoom
+                function scaleResume() {
+                    const wrapper = document.getElementById('resumeWrapper');
+                    const iframe = document.getElementById('resumeIframe');
+                    
+                    if (wrapper && iframe) {
+                        const parentWidth = wrapper.parentElement.clientWidth;
+                        const availableWidth = Math.min(parentWidth - 40, 850); 
+                        const defaultDocWidth = 850;
+                        const defaultDocHeight = 1100;
+
+                        const scale = availableWidth / defaultDocWidth;
+
+                        iframe.style.transform = `scale(${scale})`;
+                        wrapper.style.height = `${defaultDocHeight * scale}px`;
+                        wrapper.style.width = `${availableWidth}px`;
+                    }
+                }
+
+                // Run scaling instantly on load
+                scaleResume();
+
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    document.body.classList.add('resize-animation-stopper');
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        document.body.classList.remove('resize-animation-stopper');
+                        scaleResume(); 
+                        checkDocking(); 
+                    }, 400);
+                });
+
+                // --- POP EFFECT ---
+                const popElements = document.querySelectorAll('.scroll-pop');
+                const popObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('show-pop');
+                        } else {
+                            entry.target.classList.remove('show-pop'); 
+                        }
+                    });
+                }, {
+                    threshold: 0.1 
+                });
+
+                popElements.forEach(el => popObserver.observe(el));
+
+                // --- 100% BULLETPROOF SCROLL MATH ---
+                const topBtn = document.getElementById("scrollTopBtn");
+                const dockTarget = document.querySelector('.dock-target');
+                
+                function checkDocking() {
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrollPos > 100 && documentHeight > windowHeight) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        const fixedTop = windowHeight - bottomOffset - btnHeight;
+
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', checkDocking);
+                checkDocking();
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

@@ -36,7 +36,7 @@
                     
                     <section class="about-page-container">
                         
-                        <div class="about-detailed-card virtual-page">
+                        <div class="about-detailed-card virtual-page scroll-pop">
                             
                             <h2 class="folder-label biography-edge-tab">Biography</h2>
                             
@@ -98,19 +98,83 @@
                 <div class="footer-content">
                     <p>© Jaime Salcedo All Rights Reserved</p>
                 </div>
+
+                <div class="dock-target"></div>
+                
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
             </footer>
         </div>
 
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    document.body.classList.add('resize-animation-stopper');
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        document.body.classList.remove('resize-animation-stopper');
+                    }, 400);
+                });
+
+                const popElements = document.querySelectorAll('.scroll-pop');
+                const popObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('show-pop');
+                        } else {
+                            entry.target.classList.remove('show-pop'); 
+                        }
+                    });
+                }, {
+                    threshold: 0.1 
+                });
+
+                popElements.forEach(el => popObserver.observe(el));
+
+                // --- BULLETPROOF ZOOM MATH ---
+                const topBtn = document.getElementById("scrollTopBtn");
+                const footer = document.querySelector('.grid-footer');
+                const dockTarget = document.querySelector('.dock-target');
+                
+                window.addEventListener('scroll', () => {
+                    
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    if (scrollPos > 300) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        
+                        // Locked logic: Button is strictly 40px, Gap is strictly 10px globally
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        
+                        // Calculates exactly where the top pixel of the button sits on your screen
+                        const fixedTop = window.innerHeight - bottomOffset - btnHeight;
+
+                        // Because the ghost anchor shares the same exact CSS grid track,
+                        // this math will never miss, regardless of how much you zoom.
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                });
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            });
         </script>
     </body>
 </html>

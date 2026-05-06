@@ -105,6 +105,12 @@
                 <div class="footer-content">
                     <p class="hover-glow-text">© Jaime Salcedo All Rights Reserved</p>
                 </div>
+
+                <div class="dock-target"></div>
+
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
             </footer>
         </div>
 
@@ -117,74 +123,116 @@
         <audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3"></audio>
         
         <script>
-            const folder = document.getElementById('main-folder');
-            const audio = document.getElementById('bg-audio');
-            const clickSound = document.getElementById('click-sound');
-            const muteBtn = document.getElementById('mute-btn');
-            const muteIcon = muteBtn.querySelector('i');
+            document.addEventListener('DOMContentLoaded', () => {
 
-            const modal = document.getElementById('image-modal');
-            const modalImg = document.getElementById('expanded-img');
-            const galleryImgs = document.querySelectorAll('.folder-gallery img');
+                // --- PREVENT GLITCHING ON RESIZE ---
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    document.body.classList.add('resize-animation-stopper');
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        document.body.classList.remove('resize-animation-stopper');
+                        checkDocking();
+                    }, 400);
+                });
 
-            folder.addEventListener('click', () => {
-                folder.classList.toggle('open');
-                
-                document.body.classList.toggle('folder-is-open');
-                
-                if (folder.classList.contains('open')) {
-                    clickSound.volume = 0.6;
-                    clickSound.currentTime = 0;
-                    clickSound.play().catch(e => console.log("Click sound prevented."));
+                // --- AUDIO & FOLDER INTERACTION ---
+                const folder = document.getElementById('main-folder');
+                const audio = document.getElementById('bg-audio');
+                const clickSound = document.getElementById('click-sound');
+                const muteBtn = document.getElementById('mute-btn');
+                const muteIcon = muteBtn.querySelector('i');
 
-                    audio.volume = 0.4;
-                    audio.muted = false; 
-                    audio.play().catch(e => console.log("Audio autoplay prevented by browser."));
+                folder.addEventListener('click', () => {
+                    folder.classList.toggle('open');
+                    document.body.classList.toggle('folder-is-open');
                     
-                    muteBtn.classList.remove('hidden');
-                    muteIcon.className = 'fa fa-volume-up';
-                } else {
-                    audio.pause();
-                    muteBtn.classList.add('hidden');
-                }
-            });
+                    if (folder.classList.contains('open')) {
+                        clickSound.volume = 0.6;
+                        clickSound.currentTime = 0;
+                        clickSound.play().catch(e => console.log("Click sound prevented."));
 
-            function toggleMute() {
-                if (audio.muted) {
-                    audio.muted = false;
-                    muteIcon.className = 'fa fa-volume-up';
-                } else {
-                    audio.muted = true;
-                    muteIcon.className = 'fa fa-volume-off';
-                }
-            }
+                        audio.volume = 0.4;
+                        audio.muted = false; 
+                        audio.play().catch(e => console.log("Audio autoplay prevented by browser."));
+                        
+                        muteBtn.classList.remove('hidden');
+                        muteIcon.className = 'fa fa-volume-up';
+                    } else {
+                        audio.pause();
+                        muteBtn.classList.add('hidden');
+                    }
+                    
+                    // Recalculate docking math after folder animation expands the page
+                    setTimeout(checkDocking, 850);
+                });
 
-            galleryImgs.forEach(img => {
-                img.addEventListener('click', function() {
-                    modal.classList.remove('hidden');
-                    setTimeout(() => modal.classList.add('active'), 10);
-                    modalImg.src = this.src;
+                window.toggleMute = function() {
+                    if (audio.muted) {
+                        audio.muted = false;
+                        muteIcon.className = 'fa fa-volume-up';
+                    } else {
+                        audio.muted = true;
+                        muteIcon.className = 'fa fa-volume-off';
+                    }
+                }
+
+                // --- IMAGE MODAL ---
+                const modal = document.getElementById('image-modal');
+                const modalImg = document.getElementById('expanded-img');
+                const galleryImgs = document.querySelectorAll('.folder-gallery img');
+
+                galleryImgs.forEach(img => {
+                    img.addEventListener('click', function() {
+                        modal.classList.remove('hidden');
+                        setTimeout(() => modal.classList.add('active'), 10);
+                        modalImg.src = this.src;
+                    });
+                });
+
+                modal.addEventListener('click', function(e) {
+                    if (e.target !== modalImg) {
+                        modal.classList.remove('active');
+                        setTimeout(() => modal.classList.add('hidden'), 300);
+                    }
+                });
+
+                // --- BULLETPROOF ZOOM MATH JS ---
+                const topBtn = document.getElementById("scrollTopBtn");
+                const dockTarget = document.querySelector('.dock-target');
+                
+                function checkDocking() {
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrollPos > 100 && documentHeight > windowHeight) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        const fixedTop = windowHeight - bottomOffset - btnHeight;
+
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', checkDocking);
+                checkDocking(); 
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                 });
             });
-
-            modal.addEventListener('click', function(e) {
-                if (e.target !== modalImg) {
-                    modal.classList.remove('active');
-                    setTimeout(() => modal.classList.add('hidden'), 300);
-                }
-            });
-        </script>
-
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
         </script>
 
     </body>

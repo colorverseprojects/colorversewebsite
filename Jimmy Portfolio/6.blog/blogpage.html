@@ -24,9 +24,9 @@
                     
                     <div class="header-right">
                         <div class="header-logo-container">
-                            <img src="../x.indexpictures/colorverselogo.png" alt="logo">
+                            <img src="../x.indexpictures/colorverselogo.png" alt="logo" class="hover-glow-logo">
                         </div>
-                        <p class="header-brand-text">ColorVerse 彩境坊</p>
+                        <p class="header-brand-text hover-glow-text">ColorVerse 彩境坊</p>
                     </div>
                 </div>
             </header>
@@ -36,31 +36,16 @@
                     
                     <section class="about-page-container">
                         
-                        <div class="about-detailed-card virtual-page">
+                        <div class="about-detailed-card virtual-page scroll-pop">
                             
-                            <h2 class="folder-label biography-edge-tab">Fun Zone</h2>
-                            <h1 class="biography-main-title">Take a Break</h1>
+                            <h2 class="folder-label biography-edge-tab hover-glow-text">Fun Zone</h2>
+                            <h1 class="biography-main-title hover-glow-text">Take a Break</h1>
                             
-                            <p class="contact-subtitle">We believe that taking a break is just as important as working hard. Kick back, relax, and watch a fun video!</p>
+                            <p class="contact-subtitle hover-glow-text">We believe that taking a break is just as important as working hard. Kick back, relax, and watch a fun video!</p>
 
                             <div class="media-section" style="margin-bottom: 0;">
                                 <div class="iframe-container">
-                                    <iframe src="https://www.youtube.com/watch?v=cdfZsJd4D28" width="1920" height="1080" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0"></iframe>
-                                </div>
-                            </div>
-                            
-                        </div>
-
-                        <div class="about-detailed-card virtual-page">
-                            
-                            <h2 class="folder-label biography-edge-tab">Game Room</h2>
-                            <h1 class="biography-main-title">Game of the Week</h1>
-                            
-                            <p class="contact-subtitle">Done watching? See if you can beat the high score in our featured game below!</p>
-
-                            <div class="media-section" style="margin-bottom: 0;">
-                                <div class="iframe-container">
-                                    <iframe src="https://html5.gamedistribution.com/101892a26e31401ab63e5c73aff0ff76/?gd_sdk_referrer_url=https://www.example.com/games/{game-path}" width="1920" height="1080" scrolling="none" frameborder="0"></iframe>
+                                    <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0" width="1920" height="1080" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0"></iframe>
                                 </div>
                             </div>
                             
@@ -73,21 +58,85 @@
 
             <footer class="grid-footer">
                 <div class="footer-content">
-                    <p>© Jaime Salcedo All Rights Reserved</p>
+                    <p class="hover-glow-text">© Jaime Salcedo All Rights Reserved</p>
                 </div>
+                
+                <div class="dock-target"></div>
+
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
             </footer>
         </div>
 
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                // --- PREVENT GLITCHING ON RESIZE ---
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    document.body.classList.add('resize-animation-stopper');
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        document.body.classList.remove('resize-animation-stopper');
+                        checkDocking();
+                    }, 400);
+                });
+
+                // --- POP EFFECT ON SCROLL ---
+                const popElements = document.querySelectorAll('.scroll-pop');
+                const popObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('show-pop');
+                        } else {
+                            entry.target.classList.remove('show-pop'); 
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                popElements.forEach(el => popObserver.observe(el));
+
+                // --- 100% BULLETPROOF ZOOM MATH JS ---
+                const topBtn = document.getElementById("scrollTopBtn");
+                const dockTarget = document.querySelector('.dock-target');
+                
+                function checkDocking() {
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrollPos > 100 && documentHeight > windowHeight) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        
+                        // Locked logic: Button is strictly 40px, Gap is strictly 10px globally
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        
+                        // Calculates exactly where the top pixel of the button sits on your screen
+                        const fixedTop = windowHeight - bottomOffset - btnHeight;
+
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', checkDocking);
+                checkDocking(); 
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            });
         </script>
     </body>
 </html>

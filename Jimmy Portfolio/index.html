@@ -74,12 +74,12 @@
             <main class="grid-main">
                 <div class="portfolio-isolated-zone">
                     
-                    <section class="welcome-banner">
+                    <section class="welcome-banner scroll-pop">
                         <h2>Welcome to My ColorVerse!</h2>
                         <p>Explore our Colorverse—where colors tell stories and ideas come alive. Connect with our community on Discord!</p>
                     </section>
                     
-                    <section class="about-section">
+                    <section class="about-section scroll-pop">
                         <h2 class="folder-label">About Me</h2>
                         <div class="about-hero">
                             <div class="about-image">
@@ -108,7 +108,7 @@
                         </div>
                     </section>
 
-                    <section class="approach-container" id="more-about-me">
+                    <section class="approach-container scroll-pop" id="more-about-me">
                         <h2 class="folder-label">My Approach & Vision</h2>
                         <div class="approach-card">
                             <div class="approach-image-wrapper">
@@ -128,7 +128,7 @@
                         </div>
                     </section>
 
-                    <section class="project-folder">
+                    <section class="project-folder scroll-pop">
                         <h2 class="folder-label">Graphic Design</h2>
                         <div class="card-track">
                             <a href="../Jimmy Portfolio/3. portfolio/portfolio.html" class="fixed-card">
@@ -179,7 +179,7 @@
                         </div>
                     </section>
 
-                    <section class="project-folder">
+                    <section class="project-folder scroll-pop">
                         <h2 class="folder-label">Other Projects & Hobbies</h2>
                         <div class="card-track">
                             <a href="../Jimmy Portfolio/3. portfolio/portfolio.html" class="fixed-card">
@@ -233,7 +233,7 @@
                         
                     </section>
 
-                    <section class="services-container">
+                    <section class="services-container scroll-pop">
                         <h2 class="folder-label">Services Provided</h2>
                         
                         <div class="services-grid">
@@ -294,7 +294,7 @@
                         </div>
                     </section>
 
-                    <section class="pricing-container">
+                    <section class="pricing-container scroll-pop">
                         <h2 class="folder-label">Pricing Plans</h2>
                         
                         <div class="pricing-grid">
@@ -424,7 +424,7 @@
 
                     </section>
 
-                    <section class="testimonials-container">
+                    <section class="testimonials-container scroll-pop">
                         <h2 class="folder-label">Client Testimonials</h2>
                         <div class="testimonials-grid">
                             
@@ -479,7 +479,7 @@
                         </div>
                     </section>
 
-                    <section class="contact-container">
+                    <section class="contact-container scroll-pop">
                         <h2 class="folder-label">Contact</h2>
                         <div class="contact-card">
                             
@@ -523,7 +523,7 @@
                         </div>
                     </section>
 
-                    <section class="community-container">
+                    <section class="community-container scroll-pop">
                         <h2 class="folder-label">Community</h2>
                         <div class="discord-card">
                             <svg class="discord-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
@@ -544,20 +544,15 @@
                 <div class="footer-content">
                     <p>© Jaime Salcedo All Rights Reserved</p>
                 </div>
-            </footer>
-        </div>
+                
+                <div class="dock-target"></div>
 
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-        </script>
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
+            </footer>
+            
+        </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -596,9 +591,7 @@
                 let resizeTimer;
                 window.addEventListener('resize', () => {
                     document.body.classList.add('resize-animation-stopper');
-                    
                     clearTimeout(resizeTimer);
-                    
                     resizeTimer = setTimeout(() => {
                         document.body.classList.remove('resize-animation-stopper');
                     }, 400);
@@ -606,6 +599,61 @@
                     if (window.innerWidth > 992) {
                         sideNav.classList.remove('nav-active');
                     }
+                });
+
+                // --- POP EFFECT ON SCROLL ---
+                const popElements = document.querySelectorAll('.scroll-pop');
+                const popObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('show-pop');
+                        } else {
+                            entry.target.classList.remove('show-pop'); 
+                        }
+                    });
+                }, {
+                    threshold: 0.1 
+                });
+
+                popElements.forEach(el => popObserver.observe(el));
+
+                // --- BULLETPROOF ZOOM MATH JS ---
+                const topBtn = document.getElementById("scrollTopBtn");
+                const footer = document.querySelector('.grid-footer');
+                const dockTarget = document.querySelector('.dock-target');
+                
+                window.addEventListener('scroll', () => {
+                    
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    if (scrollPos > 400) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        
+                        // Locked logic: Button is strictly 40px, Gap is strictly 10px globally
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        
+                        // Calculates exactly where the top pixel of the button sits on your screen
+                        const fixedTop = window.innerHeight - bottomOffset - btnHeight;
+
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                });
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
                 });
             });
         </script>

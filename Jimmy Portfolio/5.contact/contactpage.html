@@ -36,7 +36,7 @@
                     
                     <section class="about-page-container">
                         
-                        <div class="about-detailed-card virtual-page">
+                        <div class="about-detailed-card virtual-page scroll-pop">
                             
                             <h2 class="folder-label biography-edge-tab">Get In Touch</h2>
                             
@@ -49,22 +49,22 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                                        <input type="text" id="name" name="name" required placeholder="Your Full Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="subject">Subject</label>
-                                    <input type="text" id="subject" name="subject" required placeholder="Graphic Design Inquiry">
+                                    <input type="text" id="subject" name="subject" required placeholder="Project Inquiry or Topic">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="message">Message</label>
-                                    <textarea id="message" name="message" rows="6" required placeholder="Hello Jaime, I would like to discuss..."></textarea>
+                                    <textarea id="message" name="message" rows="6" required placeholder="Please provide details about your inquiry, timeline, or any specific questions you might have..."></textarea>
                                 </div>
                                 
                                 <button type="submit" class="about-more-btn form-submit-btn">
@@ -84,19 +84,79 @@
                 <div class="footer-content">
                     <p>© Jaime Salcedo All Rights Reserved</p>
                 </div>
+                
+                <div class="dock-target"></div>
+
+                <button id="scrollTopBtn" title="Go to top">
+                    <i class="fa fa-arrow-up"></i>
+                </button>
             </footer>
         </div>
 
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69d1d196ea58591c358a5e66/1jldplcv4';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                // --- PREVENT GLITCHING ON RESIZE ---
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    document.body.classList.add('resize-animation-stopper');
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        document.body.classList.remove('resize-animation-stopper');
+                        checkDocking();
+                    }, 400);
+                });
+
+                // --- POP EFFECT ON SCROLL ---
+                const popElements = document.querySelectorAll('.scroll-pop');
+                const popObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('show-pop');
+                        } else {
+                            entry.target.classList.remove('show-pop'); 
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                popElements.forEach(el => popObserver.observe(el));
+
+                // --- 100% BULLETPROOF ZOOM MATH JS ---
+                const topBtn = document.getElementById("scrollTopBtn");
+                const dockTarget = document.querySelector('.dock-target');
+                
+                function checkDocking() {
+                    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrollPos > 100 && documentHeight > windowHeight) {
+                        topBtn.classList.add("show-btn");
+                    } else {
+                        topBtn.classList.remove("show-btn");
+                    }
+
+                    if (dockTarget) {
+                        const targetRect = dockTarget.getBoundingClientRect();
+                        const bottomOffset = 10; 
+                        const btnHeight = 40; 
+                        const fixedTop = windowHeight - bottomOffset - btnHeight;
+
+                        if (targetRect.top <= fixedTop) {
+                            topBtn.classList.add('docked');
+                        } else {
+                            topBtn.classList.remove('docked');
+                        }
+                    }
+                }
+
+                window.addEventListener('scroll', checkDocking);
+                checkDocking(); 
+
+                topBtn.addEventListener("click", () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            });
         </script>
     </body>
 </html>
