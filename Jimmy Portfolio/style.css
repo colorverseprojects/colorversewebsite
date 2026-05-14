@@ -47,7 +47,9 @@
     --gap-grid: 20px;    /* Gap between cards in a row */
 }
 
-/* --- 2. GLOBAL DEFAULTS --- */
+/* ======================================================================= */
+/* 2. GLOBAL BASE STYLES (UNIVERSAL FOR FUTURE PAGES)                      */
+/* ======================================================================= */
 * { 
     box-sizing: border-box; 
 }
@@ -64,8 +66,15 @@ html, body {
     background-attachment: fixed;
     
     color: var(--text-primary); 
+    font-size: var(--fs-body);
+    line-height: 1.6;
     scroll-behavior: smooth;
 }
+
+/* Base typography ensuring future generic tags grab correct sizing */
+/* Note: Margins are kept at 0 here to prevent overwriting specific layout margins below */
+h1, h2, h3, p { margin: 0; color: var(--text-primary); }
+a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
 
 /* --- PREVENT GLITCHING ON WINDOW RESIZE --- */
 .resize-animation-stopper * {
@@ -80,15 +89,8 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: var(--gap-section); /* Using Design System */
-    
     overflow-wrap: break-word;
     word-wrap: break-word;
-}
-
-/* FIX FOR PURPLE ICONS/LINKS */
-a, a:visited, a:hover, a:active {
-    color: var(--text-primary);
-    text-decoration: none;
 }
 
 /* --- FORCED WHITE OUTLINES AT ALL TIMES --- */
@@ -108,37 +110,32 @@ a, a:visited, a:hover, a:active {
     visibility: hidden; 
 }
 
-/* --- SCROLL-TO-TOP BUTTON --- */
+/* ======================================================================= */
+/* 3. UNIVERSAL BUTTONS & HOVER STATES                                     */
+/* ======================================================================= */
+
+/* Grouping all clickable buttons for exact visual consistency */
+.nav-links-list a, 
+.nav-socials a, 
+.contact-socials-grid a,
+.nav-hire-btn, 
+.about-more-btn, 
+.discord-btn,
 #scrollTopBtn {
-    position: fixed;
-    bottom: 10px; /* Locked gap */
-    right: 20px;
-    z-index: 9999;
-    font-size: 16px;
-    border: 2px solid var(--btn-border);
-    outline: none;
-    background-color: var(--bg-card);
+    border: 1px solid var(--btn-border); 
+    background-color: transparent;
     color: var(--text-primary);
-    cursor: pointer;
-    padding: 0;
-    border-radius: 50%;
-    width: 40px; /* Perfect size for 60px header/footer symmetry */
-    height: 40px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    transition: background-color 0.3s, opacity 0.3s, visibility 0.3s, color 0.3s, box-shadow 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
+    border-radius: var(--btn-radius) !important; /* Forces Radius */
+    white-space: nowrap; /* Prevents text wrap globally */
 }
 
-#scrollTopBtn.show-btn {
-    opacity: 1;
-    visibility: visible;
+/* Specific background additions for some buttons */
+.nav-hire-btn, .about-more-btn, .discord-btn, #scrollTopBtn {
+    background-color: var(--bg-card); 
 }
 
-/* --- GLOBAL BUTTON HOVER STATES (CONSISTENT ACROSS THE BOARD) --- */
+/* GLOBAL HOVER STATE SYSTEM */
 .nav-links-list a:hover, 
 .nav-socials a:hover, 
 .contact-socials-grid a:hover,
@@ -151,6 +148,7 @@ a, a:visited, a:hover, a:active {
     color: var(--btn-text-hover) !important;
     transform: translateY(-3px) !important;
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
+    border-color: var(--btn-border) !important;
 }
 
 .nav-links-list a:hover i, 
@@ -170,7 +168,50 @@ a, a:visited, a:hover, a:active {
     fill: var(--btn-text-hover) !important;
 }
 
-/* --- NEW: FLAWLESS DOCKED STATE FOR THE BUTTON --- */
+/* Non-button Icon Hovers */
+.header-skull-icon i:hover, 
+.pricing-icon:hover, 
+.quote-icon:hover, 
+.contact-item i:hover, 
+.discord-logo:hover, 
+.info-icon:hover, 
+.service-icon:hover {
+    transform: translateY(-3px);
+}
+
+.header-logo-container img:hover, 
+.nav-avatar-container img:hover, 
+.testi-author img:hover, 
+.skill-tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* --- SCROLL-TO-TOP BUTTON EXCEPTIONS --- */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 10px; 
+    right: 20px;
+    z-index: 9999;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50% !important; /* Circle exception */
+    width: 40px; 
+    height: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#scrollTopBtn.show-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
 #scrollTopBtn.docked {
     position: absolute;
     top: 50%;
@@ -221,38 +262,19 @@ a, a:visited, a:hover, a:active {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.welcome-banner:hover, .about-hero:hover, .approach-card:hover, 
-.fixed-card:hover, .service-card:hover, .pricing-card:hover, 
-.testimonial-card:hover, .contact-card:hover, .discord-card:hover, .info-block:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
-}
-
-/* --- 4. BUTTONS & LINK BLOCKS --- */
-.nav-links-list a, .nav-socials a, .contact-socials-grid a {
-    border: 1px solid var(--btn-border); 
-    background: transparent;
-    color: var(--text-primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    border-radius: var(--btn-radius) !important; /* Button Radius Override */
-    white-space: nowrap; /* FORCES BUTTON TEXT TO NEVER WRAP */
-}
+/* ======================================================================= */
+/* 4. SPECIFIC COMPONENT TWEAKS                                            */
+/* ======================================================================= */
 
 /* FIX ALIGNMENT ON HIRE ME BUTTON TO MATCH NAV LIST */
 .nav-hire-btn {
     display: flex; 
     align-items: center; 
     justify-content: flex-start; /* Matches nav-links-list */
-    border: 1px solid var(--btn-border);
-    background-color: var(--bg-card); 
-    color: var(--text-primary);
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    border-radius: var(--btn-radius) !important; /* OVERRIDE: Keep Radius on Buttons */
     padding: clamp(8px, 1.5vh, 15px) clamp(15px, 2vw, 25px); /* MATCH NAV LIST EXACTLY */
     margin-top: clamp(10px, 2vh, 30px); 
     font-weight: bold; 
     font-size: clamp(0.9rem, 1.8vh, 1.1rem);
-    white-space: nowrap; /* FORCES BUTTON TEXT TO NEVER WRAP */
 }
 
 .nav-hire-btn i {
@@ -262,11 +284,16 @@ a, a:visited, a:hover, a:active {
 }
 
 .about-more-btn, .discord-btn {
-    border: 1px solid var(--btn-border);
-    background-color: var(--bg-card); 
-    color: var(--text-primary);
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    border-radius: var(--btn-radius) !important;
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 12px 28px; 
+    font-weight: bold; 
+    margin-top: 25px; 
+}
+
+.about-more-btn i { 
+    margin-right: 8px; 
 }
 
 .full-width-btn {
@@ -274,20 +301,26 @@ a, a:visited, a:hover, a:active {
     margin-top: 30px;
 }
 
-/* --- 5. TEXT HOVER POP & FLUID TYPOGRAPHY --- */
+/* --- 5. TEXT HOVER POP & FLUID TYPOGRAPHY TWEAKS --- */
 .folder-label { font-size: var(--fs-folder-label); }
 .section-title { font-size: var(--fs-section-title); }
-.welcome-banner h2 { font-size: var(--fs-banner-h2); }
-.welcome-banner p { font-size: var(--fs-body); }
-.service-text h3 { font-size: var(--fs-card-h3); }
-.pricing-card h3 { font-size: var(--fs-card-h3); }
-.price-tag { font-size: var(--fs-price-tag); }
 
-.about-description, .approach-text p, .card-info-zone p, .service-text p, 
-.pricing-desc, .info-block p, .testi-text, .contact-info p, .pricing-footer p {
-    font-size: var(--fs-body);
-    line-height: 1.6;
+.welcome-banner { 
+    padding: 40px 30px; 
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInDown 0.8s ease; 
 }
+
+.welcome-banner h2 { font-size: var(--fs-banner-h2); margin: 0 0 10px 0;}
+.welcome-banner p { margin: 0;}
+
+.service-text h3 { font-size: var(--fs-card-h3); margin-bottom: 15px;}
+.pricing-card h3 { font-size: var(--fs-card-h3); }
+.price-tag { font-size: var(--fs-price-tag); margin: 5px 0 15px 0; font-weight: bold;}
 
 .includes-title {
     margin: 0 0 10px 0;
@@ -314,10 +347,9 @@ a, a:visited, a:hover, a:active {
 }
 
 .about-description, .approach-text p, .testi-text, .contact-info p, 
-.discord-card p, .nav-bio, .welcome-banner p, .card-info-zone p, .info-block p, .pricing-desc p, .pricing-features li,
+.discord-card p, .nav-bio, .card-info-zone p, .info-block p, .pricing-desc p, .pricing-features li,
 .pricing-footer p, .service-card p, .includes-title {
     display: block; 
-    line-height: 1.5; 
 }
 
 .price-sub { font-size: var(--fs-subtext); font-weight: normal; }
@@ -336,7 +368,7 @@ a, a:visited, a:hover, a:active {
     text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
 }
 
-/* --- 6. ICON & IMAGE LIFT --- */
+/* --- 6. ICON SIZING --- */
 .header-skull-icon {
     cursor: pointer;
 }
@@ -372,23 +404,13 @@ a, a:visited, a:hover, a:active {
     fill: currentColor;
 }
 
-/* Hover for non-button icons globally */
-.header-skull-icon i:hover, .pricing-icon:hover, 
-.quote-icon:hover, .contact-item i:hover, .discord-logo:hover, .info-icon:hover, .service-icon:hover {
-    transform: translateY(-3px);
-}
-
-.header-logo-container img:hover, .nav-avatar-container img:hover, 
-.testi-author img:hover, .skill-tag:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-}
-
 .close-nav-btn {
     display: none;
 }
 
-/* --- 7. STRUCTURAL LAYOUT RULES & ZOOM RESILIENCE --- */
+/* ======================================================================= */
+/* 7. STRUCTURAL LAYOUT RULES & ZOOM RESILIENCE                            */
+/* ======================================================================= */
 .grid-skeleton {
     display: grid;
     grid-template-columns: clamp(250px, 22vw, 300px) 1fr;
@@ -413,7 +435,7 @@ a, a:visited, a:hover, a:active {
     width: calc(100% - 60px); 
     justify-self: center;     
     margin-top: 20px !important; 
-    border-radius: 0; /* Forced Squared Regular */
+    border-radius: 0 !important; /* Forced Squared Regular */
 }
 
 .header-inner { 
@@ -498,7 +520,6 @@ a, a:visited, a:hover, a:active {
     justify-content: center; 
     width: 42px; /* Fixed, balanced size matching your reference image */
     height: 42px; 
-    border-radius: var(--btn-radius) !important; /* Button Radius Override */
     flex-shrink: 0; /* PREVENTS SQUISHING */
 }
 
@@ -518,10 +539,9 @@ a, a:visited, a:hover, a:active {
     align-items: center; 
     justify-content: flex-start; /* Exact image alignment */
     padding: clamp(8px, 1.5vh, 15px) clamp(15px, 2vw, 25px); 
-    border-radius: var(--btn-radius) !important; /* Button Radius Override */
     margin-bottom: clamp(6px, 1vh, 12px); 
     font-weight: bold;
-    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    font-size: clamp(0.9rem, 1.8vh, 1.1rem);
 }
 
 .nav-links-list a i { 
@@ -536,26 +556,6 @@ a, a:visited, a:hover, a:active {
     background-color: transparent; 
 }
 
-.welcome-banner { 
-    border-radius: var(--card-radius); 
-    padding: 30px; 
-    text-align: center; 
-    animation: fadeInDown 0.8s ease; 
-}
-
-.welcome-banner h2 { 
-    margin: 0 0 10px; 
-}
-
-.welcome-banner p { 
-    margin: 0; 
-}
-
-@keyframes fadeInDown { 
-    from { opacity: 0; transform: translateY(-20px); } 
-    to { opacity: 1; transform: translateY(0); } 
-}
-
 .folder-label { 
     border-left: 4px solid var(--border-color); 
     padding-left: 15px; 
@@ -566,7 +566,6 @@ a, a:visited, a:hover, a:active {
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     gap: 40px; 
-    border-radius: var(--card-radius); 
     padding: 40px; 
     align-items: stretch; 
 }
@@ -600,10 +599,6 @@ a, a:visited, a:hover, a:active {
     justify-content: center; 
 }
 
-.section-title { 
-    margin-top: 0; 
-}
-
 .skill-tag { 
     background: var(--bg-card-alt); 
     padding: 6px 14px; 
@@ -612,22 +607,7 @@ a, a:visited, a:hover, a:active {
     margin: 5px 5px 0 0; 
 }
 
-.about-more-btn { 
-    display: inline-flex; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 12px 28px; 
-    font-weight: bold; 
-    border-radius: var(--btn-radius) !important; /* Button Radius Override */
-    margin-top: 25px; 
-}
-
-.about-more-btn i { 
-    margin-right: 8px; 
-}
-
 .approach-card { 
-    border-radius: var(--card-radius); 
     padding: 40px; 
     display: flex; 
     align-items: center; 
@@ -657,15 +637,6 @@ a, a:visited, a:hover, a:active {
 
 .approach-card:hover .circle-profile-img {
     transform: scale(1);
-}
-
-.approach-text h3 { 
-    margin-top: 0; 
-    margin-bottom: 15px; 
-}
-
-.approach-text p { 
-    margin: 0; 
 }
 
 .resume-btn-group { 
@@ -713,7 +684,6 @@ a, a:visited, a:hover, a:active {
     flex-direction: column; 
     width: 100%; 
     height: 380px; 
-    border-radius: var(--card-radius); 
     overflow: hidden; 
     flex-shrink: 0; 
     scroll-snap-align: start; 
@@ -747,14 +717,6 @@ a, a:visited, a:hover, a:active {
     justify-content: center; 
 }
 
-.card-info-zone h3 { 
-    margin: 0 0 5px; 
-}
-
-.card-info-zone p { 
-    margin: 0; 
-}
-
 .services-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
@@ -762,7 +724,6 @@ a, a:visited, a:hover, a:active {
 }
 
 .service-card { 
-    border-radius: var(--card-radius); 
     padding: 85px 30px 30px; 
     display: flex;
     flex-direction: column;
@@ -777,26 +738,10 @@ a, a:visited, a:hover, a:active {
     justify-content: center;
     width: 50px;
     height: 50px;
-    border-radius: var(--card-radius); 
     background-color: var(--bg-card-alt); 
     position: absolute; 
     top: 25px; 
     left: 25px; 
-}
-
-.service-icon { 
-    margin: 0; 
-}
-
-.service-text h3 { 
-    margin: 0 0 15px 0; 
-    padding-left: 0; 
-    padding-right: 0; 
-}
-
-.service-text p { 
-    margin: 0; 
-    color: var(--text-primary); 
 }
 
 .pricing-grid { 
@@ -806,7 +751,6 @@ a, a:visited, a:hover, a:active {
 }
 
 .pricing-card { 
-    border-radius: var(--card-radius); 
     padding: 40px; 
     text-align: center; 
     display: flex; 
@@ -830,14 +774,12 @@ a, a:visited, a:hover, a:active {
 }
 
 .pricing-icon { 
-    margin-bottom: 10px; 
     display: flex; 
     align-items: center; 
     justify-content: center;
 }
 
 .pricing-card h3 { 
-    margin: 0 0 5px 0; 
     display: flex; 
     align-items: center; 
     justify-content: center;
@@ -845,8 +787,6 @@ a, a:visited, a:hover, a:active {
 }
 
 .price-tag { 
-    font-weight: bold; 
-    margin: 5px 0 15px 0; 
     display: flex; 
     align-items: center; 
     justify-content: center;
@@ -854,20 +794,14 @@ a, a:visited, a:hover, a:active {
 
 .pricing-desc { 
     width: 100%; 
-    margin: 0; 
     text-align: center; 
     flex-grow: 1; 
 }
 
 .pricing-features { 
     padding: 0; 
-    margin: 0 0 15px 0; 
     list-style-position: inside; 
     text-align: center; 
-}
-
-.pricing-features li { 
-    margin-bottom: 5px; 
 }
 
 .pricing-footer {
@@ -880,7 +814,6 @@ a, a:visited, a:hover, a:active {
 .pricing-footer p { 
     font-style: italic; 
     opacity: 0.8; 
-    margin: 5px 0 0; 
 }
 
 .pricing-info-horizontal { 
@@ -891,7 +824,6 @@ a, a:visited, a:hover, a:active {
 
 .info-block { 
     flex: 1; 
-    border-radius: var(--card-radius); 
     padding: 30px; 
     display: flex; 
     flex-direction: column; 
@@ -906,20 +838,6 @@ a, a:visited, a:hover, a:active {
     width: 100%;
 }
 
-.info-icon { 
-    color: var(--text-primary); 
-    flex-shrink: 0; 
-    margin: 0; 
-}
-
-.info-block h4 { 
-    margin: 0 0 10px 0; 
-}
-
-.info-block p { 
-    margin: 0; 
-}
-
 .testimonials-grid { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
@@ -927,7 +845,6 @@ a, a:visited, a:hover, a:active {
 }
 
 .testimonial-card { 
-    border-radius: var(--card-radius); 
     padding: 40px 30px; 
     position: relative; 
 }
@@ -936,13 +853,10 @@ a, a:visited, a:hover, a:active {
     position: absolute; 
     top: 25px; 
     right: 25px; 
-    margin: 0; 
-    color: var(--text-primary); 
 }
 
 .testi-text { 
     font-style: italic; 
-    margin-bottom: 25px; 
     position: relative; 
     z-index: 2; 
     padding-right: 60px; 
@@ -962,12 +876,7 @@ a, a:visited, a:hover, a:active {
     border: 1px solid var(--border-color); 
 }
 
-.testi-author h4 { 
-    margin: 0; 
-}
-
 .contact-card { 
-    border-radius: var(--card-radius); 
     display: flex; 
     overflow: hidden; 
     min-height: 400px; 
@@ -993,35 +902,16 @@ a, a:visited, a:hover, a:active {
     justify-content: center; 
 }
 
-.contact-info h3 { 
-    margin-top: 0; 
-    margin-bottom: 15px; 
-}
-
-.contact-info p { 
-    margin-bottom: 30px; 
-}
-
-.contact-details { 
-    margin-bottom: 30px; 
-}
-
 .contact-item { 
     display: flex; 
     align-items: center; 
     gap: 15px; 
     margin-bottom: 15px; 
-    font-size: 1.1rem; 
 }
 
 .contact-item i { 
     width: 30px; 
     text-align: center; 
-}
-
-.contact-info h4 { 
-    margin-bottom: 15px; 
-    margin-top: 10px; 
 }
 
 .contact-socials-grid { 
@@ -1036,12 +926,10 @@ a, a:visited, a:hover, a:active {
     justify-content: center; 
     width: 45px; 
     height: 45px; 
-    border-radius: var(--btn-radius) !important; /* Button Radius Override */
     font-size: 1.2rem; 
 }
 
 .discord-card { 
-    border-radius: var(--card-radius); 
     padding: 50px 40px; 
     display: flex; 
     flex-direction: column; 
@@ -1057,18 +945,8 @@ a, a:visited, a:hover, a:active {
     fill: var(--text-primary); 
 }
 
-.discord-card h3 { 
-    margin: 0 0 15px; 
-}
-
-.discord-card p { 
-    max-width: 600px; 
-    margin: 0 0 30px; 
-}
-
 .discord-btn { 
     padding: 14px 35px; 
-    border-radius: var(--btn-radius) !important; /* Button Radius Override */
     font-weight: bold; 
 }
 
@@ -1092,11 +970,7 @@ a, a:visited, a:hover, a:active {
     width: calc(100% - 60px); 
     justify-self: center;     
     margin-bottom: 20px !important; 
-    border-radius: 0; /* Forced Squared Regular */
-}
-
-.grid-footer p { 
-    margin: 0; 
+    border-radius: 0 !important; /* Forced Squared Regular */
 }
 
 /* ======================================================================= */
