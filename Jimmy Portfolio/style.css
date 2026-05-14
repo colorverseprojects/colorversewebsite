@@ -19,9 +19,9 @@
     --btn-text-hover: #000000;
 
     /* --- BORDER RADII FOR GLOBAL SHAPES --- */
-    --card-radius: 15px;      /* Restored radius for main content divs */
-    --btn-radius: 8px;        /* Standard button/social icon curve */
-    --pill-radius: 20px;      /* Fully rounded shape for badges/tags */
+    --card-radius: 15px;      /* Restored main content curves */
+    --btn-radius: 8px;        /* Restored standard button curve */
+    --pill-radius: 20px;      /* Restored fully rounded badge shapes */
 
     /* --- FLUID TYPOGRAPHY (TEXT SIZES) --- */
     /* clamp(min-size, preferred-size, max-size) */
@@ -72,7 +72,6 @@ html, body {
 }
 
 /* Base typography ensuring future generic tags grab correct sizing */
-/* Note: Margins are kept at 0 here to prevent overwriting specific layout margins below */
 h1, h2, h3, p { margin: 0; color: var(--text-primary); }
 a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
 
@@ -88,7 +87,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     margin: 0 auto; 
     display: flex;
     flex-direction: column;
-    gap: var(--gap-section); /* Using Design System */
+    gap: var(--gap-section); 
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
@@ -104,7 +103,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     top: 50%;
     transform: translateY(-50%);
     right: 20px;
-    width: 40px; /* Locked to 40px */
+    width: 40px; 
     height: 40px;
     pointer-events: none;
     visibility: hidden; 
@@ -114,7 +113,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 /* 3. UNIVERSAL BUTTONS & HOVER STATES                                     */
 /* ======================================================================= */
 
-/* Grouping all clickable buttons for exact visual consistency */
 .nav-links-list a, 
 .nav-socials a, 
 .contact-socials-grid a,
@@ -126,11 +124,10 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     background-color: transparent;
     color: var(--text-primary);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, fill 0.3s ease;
-    border-radius: var(--btn-radius) !important; /* Forces Radius */
-    white-space: nowrap; /* Prevents text wrap globally */
+    border-radius: var(--btn-radius) !important; 
+    white-space: nowrap; 
 }
 
-/* Specific background additions for some buttons */
 .nav-hire-btn, .about-more-btn, .discord-btn, #scrollTopBtn {
     background-color: var(--bg-card); 
 }
@@ -196,7 +193,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     font-size: 16px;
     cursor: pointer;
     padding: 0;
-    border-radius: 50% !important; /* Circle exception */
+    border-radius: 50% !important; /* Restored Circle */
     width: 40px; 
     height: 40px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
@@ -250,12 +247,12 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .welcome-banner, .about-hero, .approach-card, .fixed-card, .service-card, 
 .pricing-card, .testimonial-card, .contact-card, .discord-card, .info-block {
     border: 1px solid var(--border-color); 
-    border-radius: var(--card-radius); /* Applied Global Radius */
+    border-radius: var(--card-radius); 
 }
 
 .service-icon-box {
     border: 1px solid var(--border-color); 
-    border-radius: var(--card-radius); /* Applied Global Radius */
+    border-radius: var(--card-radius); 
 }
 
 .grid-header:hover, .grid-nav:hover, .grid-footer:hover {
@@ -266,19 +263,18 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 /* 4. SPECIFIC COMPONENT TWEAKS                                            */
 /* ======================================================================= */
 
-/* FIX ALIGNMENT ON HIRE ME BUTTON TO MATCH NAV LIST */
 .nav-hire-btn {
     display: flex; 
     align-items: center; 
-    justify-content: flex-start; /* Matches nav-links-list */
-    padding: clamp(8px, 1.5vh, 15px) clamp(15px, 2vw, 25px); /* MATCH NAV LIST EXACTLY */
-    margin-top: clamp(10px, 2vh, 30px); 
+    justify-content: flex-start; 
+    /* Padding specifically scales to viewport height now so it fits */
+    padding: clamp(8px, 1.2vh, 12px) clamp(15px, 2vw, 20px); 
     font-weight: bold; 
     font-size: clamp(0.9rem, 1.8vh, 1.1rem);
 }
 
 .nav-hire-btn i {
-    width: 30px; /* MATCH NAV LIST ICON ALIGNMENT EXACTLY */
+    width: 30px; 
     margin-right: 10px; 
     text-align: left;
 }
@@ -398,8 +394,8 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 /* --- PERFECTLY PROPORTIONED SIDE NAV ICONS --- */
 .nav-socials a i, 
 .nav-socials a svg {
-    font-size: 1.1rem; /* Forces FontAwesome to be crisp & proportional */
-    width: 1.1rem;     /* Forces SVG to match FontAwesome size perfectly */
+    font-size: 1.1rem; 
+    width: 1.1rem;     
     height: 1.1rem; 
     fill: currentColor;
 }
@@ -435,7 +431,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     width: calc(100% - 60px); 
     justify-self: center;     
     margin-top: 20px !important; 
-    border-radius: 0 !important; /* Forced Squared Regular */
+    border-radius: 0 !important; 
 }
 
 .header-inner { 
@@ -457,7 +453,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     width: 40px; 
     display: block; 
     flex-shrink: 0; 
-    border-radius: 50%; 
+    border-radius: 50%; /* Restored Circle */
     object-fit: cover; 
 }
 
@@ -470,21 +466,33 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 /* --- THE SIDE NAVIGATION --- */
 .grid-nav { 
     grid-area: nav; 
-    padding: clamp(15px, 3vh, 40px) 25px; /* Fluid Padding to Shrink on Laptops */
+    /* Top and bottom padding scaled with screen height to prevent pushing elements off screen */
+    padding: clamp(20px, 4vh, 40px) 25px; 
     position: sticky;
     top: 0;
     height: 100vh;
-    
-    overflow-y: hidden; /* HIDDEN SCROLLBAR FOR DESKTOP - FORCES FULL CONTENT VIEW */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* VERTICALLY CENTERS THE CONTENT */
+    
+    /* STRONGLY PREVENTS SCROLLING ON DESKTOP */
+    overflow: hidden; 
+    border-radius: 0 !important; 
+}
+
+/* These items will NEVER compress or warp on a smaller monitor */
+.nav-profile, .nav-line, .nav-links-list, .nav-cta-wrap {
+    flex-shrink: 0; 
+}
+
+.nav-profile {
+    margin-top: 0; 
 }
 
 .nav-avatar-container img { 
-    width: clamp(70px, 12vh, 120px);  /* Fluid avatar to fit screen height */
-    height: clamp(70px, 12vh, 120px); 
-    border-radius: 50%; 
+    /* Scales down slightly on small heights to ensure perfect fit */
+    width: clamp(60px, 12vh, 110px);  
+    height: clamp(60px, 12vh, 110px); 
+    border-radius: 50%; /* Restored Circle */
     object-fit: cover; 
     display: block; 
     margin: 0 auto; 
@@ -493,13 +501,13 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 
 .nav-text-group { 
     text-align: center; 
-    margin-top: clamp(10px, 1.5vh, 15px); 
+    margin-top: clamp(8px, 1.5vh, 15px); 
 }
 
 .nav-name { 
-    margin: 0 0 clamp(5px, 1vh, 10px); 
+    margin: 0 0 clamp(2px, 1vh, 5px); 
     font-size: var(--fs-nav-name); 
-    white-space: nowrap; /* FORCES FIRST & LAST NAME SIDE-BY-SIDE */
+    white-space: nowrap; 
 }
 
 .nav-bio {
@@ -509,24 +517,24 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .nav-socials { 
     display: flex; 
     justify-content: center; 
-    gap: 12px; /* Set exact spacing based on your right reference image */
-    margin-top: clamp(10px, 2vh, 20px); 
-    flex-wrap: nowrap; /* FORCES 1 ROW ALWAYS */
+    gap: 12px; 
+    margin-top: clamp(8px, 1.5vh, 15px); 
+    flex-wrap: nowrap; 
 }
 
 .nav-socials a { 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    width: 42px; /* Fixed, balanced size matching your reference image */
+    width: 42px; 
     height: 42px; 
-    flex-shrink: 0; /* PREVENTS SQUISHING */
+    flex-shrink: 0; 
 }
 
 .nav-line { 
     border: 0; 
     border-top: 1px solid var(--border-color); 
-    margin: clamp(10px, 2vh, 25px) 0; 
+    margin: clamp(10px, 2vh, 20px) 0; 
 }
 
 .nav-links-list { 
@@ -537,9 +545,10 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .nav-links-list a { 
     display: flex; 
     align-items: center; 
-    justify-content: flex-start; /* Exact image alignment */
-    padding: clamp(8px, 1.5vh, 15px) clamp(15px, 2vw, 25px); 
-    margin-bottom: clamp(6px, 1vh, 12px); 
+    justify-content: flex-start; 
+    /* Scaled padding specifically to match viewport height */
+    padding: clamp(8px, 1.2vh, 12px) clamp(15px, 2vw, 20px); 
+    margin-bottom: clamp(5px, 1vh, 10px); 
     font-weight: bold;
     font-size: clamp(0.9rem, 1.8vh, 1.1rem);
 }
@@ -547,7 +556,13 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .nav-links-list a i { 
     width: 30px; 
     margin-right: 10px; 
-    text-align: left; /* Exact image alignment */
+    text-align: left; 
+}
+
+.nav-cta-wrap {
+    margin-top: auto; /* Pushes the button to the absolute bottom of the safe padding zone */
+    margin-bottom: 0; 
+    width: 100%;
 }
 
 .grid-main { 
@@ -617,7 +632,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .approach-image-wrapper {
     width: 200px; 
     height: 200px; 
-    border-radius: 50%; 
+    border-radius: 50%; /* Restored Circle */ 
     flex-shrink: 0; 
     border: 1px solid var(--border-color); 
     overflow: hidden; 
@@ -871,7 +886,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .testi-author img { 
     width: 50px; 
     height: 50px; 
-    border-radius: 50%; 
+    border-radius: 50%; /* Restored Circle */
     object-fit: cover; 
     border: 1px solid var(--border-color); 
 }
@@ -970,7 +985,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     width: calc(100% - 60px); 
     justify-self: center;     
     margin-bottom: 20px !important; 
-    border-radius: 0 !important; /* Forced Squared Regular */
+    border-radius: 0 !important; 
 }
 
 /* ======================================================================= */
@@ -1033,7 +1048,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
         z-index: 2000 !important;
         transition: left 0.3s ease; 
         
-        /* HIDE SCROLLBAR BUT ALLOW SCROLLING */
+        /* RE-ENABLES SCROLLING SPECIFICALLY FOR THE MOBILE MENU POP-OUT */
         overflow-y: auto !important; 
         scrollbar-width: none !important; /* Firefox */
         -ms-overflow-style: none !important; /* IE and Edge */
@@ -1048,6 +1063,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     .grid-nav::-webkit-scrollbar {
         display: none !important; /* Chrome, Safari, Webkit */
         width: 0 !important;
+        height: 0 !important;
     }
 
     .grid-nav.nav-active {
@@ -1073,7 +1089,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
         font-size: 1.1rem;
         width: 100%;
         min-height: 55px;
-        justify-content: flex-start; /* explicitly align left on mobile too */
+        justify-content: flex-start; 
     }
 
     /* THE GLOWING WHITE BORDER ACTIVE STATE FOR HEADER MENU ICON */
@@ -1143,7 +1159,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     .close-nav-btn:hover {
         background-color: var(--btn-bg-hover);
         color: var(--btn-text-hover);
-        transform: scale(1.05); /* Removed translate to keep X centered in its spot */
+        transform: scale(1.05); 
     }
     
     .about-hero, .approach-card, .service-card, .pricing-card, 
@@ -1161,7 +1177,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     
     .pricing-features { 
         display: inline-block; 
-        text-align: left;      
+        text-align: left;       
         margin: 10px auto; 
     }
     
