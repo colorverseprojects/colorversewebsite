@@ -47,11 +47,17 @@
                     </div>
                     
                     <div class="nav-socials">
-                        <a href="https://linkedin.com/in/jaimesalcedobusiness/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                        <a href="https://facebook.com/colorversebrandfacebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="https://github.com/JaimeSalcedoDevProjects" target="_blank"><i class="fa fa-github"></i></a>
-                        <a href="#"><i class="fa fa-paypal"></i></a>
-                        <a href="../Jimmy Portfolio/7. Hidden Portfolio/hiddenportfoliopage.html"><i class="fa fa-user-secret"></i></a>
+                        <a href="https://linkedin.com/in/jaimesalcedobusiness/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                        
+                        <a href="https://github.com/JaimeSalcedoDevProjects" target="_blank" title="GitHub"><i class="fa fa-github"></i></a>
+                        
+                        <a href="#" target="_blank" title="Fiverr">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                               <path d="M19.5,4A2.5,2.5,0,1,1,17,6.5,2.5,2.5,0,0,1,19.5,4M22,10H17V24h5ZM14.1,10H11.5V8.1c0-1.6.8-2.2,2.3-2.2a6.4,6.4,0,0,1,2.5.6V1.7A10.1,10.1,0,0,0,12.7,1C8.6,1,6.5,3.6,6.5,7.5V10H3v4.6H6.5V24h5V14.6h2.6Z" />
+                            </svg>
+                        </a>
+                        
+                        <a href="../Jimmy Portfolio/7. Hidden Portfolio/hiddenportfoliopage.html" title="Hidden Portfolio"><i class="fa fa-user-secret"></i></a>
                     </div>
                 </div>
 
@@ -507,7 +513,12 @@
 
                                 <h4>Follow Me</h4>
                                 <div class="contact-socials-grid">
-                                    <a href="https://facebook.com/colorversebrandfacebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                    
+                                    <a href="#" target="_blank" title="Fiverr">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                           <path d="M19.5,4A2.5,2.5,0,1,1,17,6.5,2.5,2.5,0,0,1,19.5,4M22,10H17V24h5ZM14.1,10H11.5V8.1c0-1.6.8-2.2,2.3-2.2a6.4,6.4,0,0,1,2.5.6V1.7A10.1,10.1,0,0,0,12.7,1C8.6,1,6.5,3.6,6.5,7.5V10H3v4.6H6.5V24h5V14.6h2.6Z" />
+                                        </svg>
+                                    </a>
                                     
                                     <a href="https://tiktok.com/@colorversebrandtiktok" target="_blank" title="TikTok">
                                         <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -563,18 +574,21 @@
                 menuIcon.addEventListener('click', (e) => {
                     if (window.innerWidth <= 992) {
                         sideNav.classList.add('nav-active');
+                        menuIcon.classList.add('active'); // Triggers the glowing white border
                         e.stopPropagation(); 
                     }
                 });
 
                 closeBtn.addEventListener('click', () => {
                     sideNav.classList.remove('nav-active');
+                    menuIcon.classList.remove('active'); 
                 });
 
                 document.addEventListener('click', (e) => {
                     if (window.innerWidth <= 992 && sideNav.classList.contains('nav-active')) {
                         if (!sideNav.contains(e.target) && !menuIcon.contains(e.target)) {
                             sideNav.classList.remove('nav-active');
+                            menuIcon.classList.remove('active'); 
                         }
                     }
                 });
@@ -584,6 +598,7 @@
                     link.addEventListener('click', () => {
                         if (window.innerWidth <= 992) {
                             sideNav.classList.remove('nav-active');
+                            menuIcon.classList.remove('active'); 
                         }
                     });
                 });
@@ -598,6 +613,7 @@
 
                     if (window.innerWidth > 992) {
                         sideNav.classList.remove('nav-active');
+                        menuIcon.classList.remove('active'); 
                     }
                 });
 
