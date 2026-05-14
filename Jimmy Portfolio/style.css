@@ -381,9 +381,9 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 }
 
 /* Apply Global Icon Sizing Variables */
-.header-skull-icon i, .service-icon, .contact-item i, .info-icon { font-size: var(--icon-md); }
+.header-skull-icon i, .service-icon, .contact-item i { font-size: var(--icon-md); }
 .quote-icon { font-size: var(--icon-lg); }
-.pricing-icon { font-size: var(--icon-xl); }
+.pricing-icon, .info-icon { font-size: var(--icon-xl); } /* .info-icon matched with large pricing icons */
 
 .contact-socials-grid a svg { 
     width: var(--icon-sm); 
@@ -842,14 +842,14 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     padding: 30px; 
     display: flex; 
     flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
+    align-items: center; /* FIXED to center content */
+    text-align: center; /* FIXED to center content */
     gap: 15px; 
 }
 
 .info-content { 
     flex-grow: 1; 
-    text-align: left; 
+    text-align: center; /* FIXED to center content */
     width: 100%;
 }
 
@@ -985,7 +985,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     width: calc(100% - 60px); 
     justify-self: center;     
     margin-bottom: 20px !important; 
-    border-radius: 0 !important; 
 }
 
 /* ======================================================================= */
