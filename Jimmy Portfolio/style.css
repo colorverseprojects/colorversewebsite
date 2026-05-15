@@ -132,56 +132,63 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     background-color: var(--bg-card); 
 }
 
-/* GLOBAL HOVER STATE SYSTEM */
-.nav-links-list a:hover, 
-.nav-socials a:hover, 
-.contact-socials-grid a:hover,
-.nav-hire-btn:hover, 
-.about-more-btn:hover, 
-.discord-btn:hover,
-.close-nav-btn:hover,
-#scrollTopBtn:hover {
-    background-color: var(--btn-bg-hover) !important;
-    color: var(--btn-text-hover) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
-    border-color: var(--btn-border) !important;
-}
+/* GLOBAL HOVER STATE SYSTEM - WRAPPED TO PREVENT STICKY MOBILE HOVERS */
+@media (hover: hover) {
+    .nav-links-list a:hover, 
+    .nav-socials a:hover, 
+    .contact-socials-grid a:hover,
+    .nav-hire-btn:hover, 
+    .about-more-btn:hover, 
+    .discord-btn:hover,
+    .close-nav-btn:hover,
+    #scrollTopBtn:hover {
+        background-color: var(--btn-bg-hover) !important;
+        color: var(--btn-text-hover) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
+        border-color: var(--btn-border) !important;
+    }
 
-.nav-links-list a:hover i, 
-.nav-links-list a:hover span,
-.nav-socials a:hover i,
-.nav-socials a:hover svg,
-.contact-socials-grid a:hover i,
-.contact-socials-grid a:hover svg,
-.nav-hire-btn:hover span, 
-.nav-hire-btn:hover i, 
-.about-more-btn:hover span, 
-.about-more-btn:hover i, 
-.discord-btn:hover span, 
-.discord-btn:hover i,
-.close-nav-btn:hover i {
-    color: var(--btn-text-hover) !important;
-    fill: var(--btn-text-hover) !important;
-}
+    .nav-links-list a:hover i, 
+    .nav-links-list a:hover span,
+    .nav-socials a:hover i,
+    .nav-socials a:hover svg,
+    .contact-socials-grid a:hover i,
+    .contact-socials-grid a:hover svg,
+    .nav-hire-btn:hover span, 
+    .nav-hire-btn:hover i, 
+    .about-more-btn:hover span, 
+    .about-more-btn:hover i, 
+    .discord-btn:hover span, 
+    .discord-btn:hover i,
+    .close-nav-btn:hover i {
+        color: var(--btn-text-hover) !important;
+        fill: var(--btn-text-hover) !important;
+    }
 
-/* Non-button Icon Hovers */
-.header-skull-icon i:hover, 
-.pricing-icon:hover, 
-.quote-icon:hover, 
-.contact-item i:hover, 
-.discord-logo:hover, 
-.info-icon:hover, 
-.service-icon:hover {
-    transform: translateY(-3px);
-}
+    /* Non-button Icon Hovers */
+    .header-skull-icon i:hover, 
+    .pricing-icon:hover, 
+    .quote-icon:hover, 
+    .contact-item i:hover, 
+    .discord-logo:hover, 
+    .info-icon:hover, 
+    .service-icon:hover {
+        transform: translateY(-3px);
+    }
 
-.header-logo-container img:hover, 
-.nav-avatar-container img:hover, 
-.testi-author img:hover, 
-.skill-tag:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    .header-logo-container img:hover, 
+    .nav-avatar-container img:hover, 
+    .testi-author img:hover, 
+    .skill-tag:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    #scrollTopBtn.docked:hover {
+        transform: translateY(calc(-50% - 5px)) !important; 
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
+    }
 }
 
 /* --- SCROLL-TO-TOP BUTTON EXCEPTIONS --- */
@@ -218,11 +225,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     box-shadow: none; 
 }
 
-#scrollTopBtn.docked:hover {
-    transform: translateY(calc(-50% - 5px)) !important; 
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
-}
-
 /* --- POP EFFECT ON SCROLL CLASSES --- */
 .scroll-pop {
     opacity: 0;
@@ -255,8 +257,10 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     border-radius: var(--card-radius); 
 }
 
-.grid-header:hover, .grid-nav:hover, .grid-footer:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+@media (hover: hover) {
+    .grid-header:hover, .grid-nav:hover, .grid-footer:hover {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
 }
 
 /* ======================================================================= */
@@ -352,16 +356,18 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 .testi-author span { font-size: var(--fs-subtext); }
 .nav-bio { font-size: var(--fs-subtext); }
 
-.header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover, 
-.section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover, 
-.card-info-zone h3:hover, .card-info-zone p:hover, .service-card h3:hover, .service-card p:hover, 
-.pricing-card h3:hover, .price-tag:hover, .pricing-desc p:hover, .pricing-features li:hover, .testi-text:hover, .testi-author h4:hover, 
-.testi-author span:hover, .contact-info h3:hover, .contact-info p:hover, .contact-info h4:hover, 
-.contact-item span:hover, .discord-card h3:hover, .discord-card p:hover, .grid-footer p:hover,
-.welcome-banner h2:hover, .welcome-banner p:hover, .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
-.pricing-footer p:hover, .price-sub:hover, .includes-title:hover {
-    transform: translateY(-3px);
-    text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+@media (hover: hover) {
+    .header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover, 
+    .section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover, 
+    .card-info-zone h3:hover, .card-info-zone p:hover, .service-card h3:hover, .service-card p:hover, 
+    .pricing-card h3:hover, .price-tag:hover, .pricing-desc p:hover, .pricing-features li:hover, .testi-text:hover, .testi-author h4:hover, 
+    .testi-author span:hover, .contact-info h3:hover, .contact-info p:hover, .contact-info h4:hover, 
+    .contact-item span:hover, .discord-card h3:hover, .discord-card p:hover, .grid-footer p:hover,
+    .welcome-banner h2:hover, .welcome-banner p:hover, .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
+    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover {
+        transform: translateY(-3px);
+        text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+    }
 }
 
 /* --- 6. ICON SIZING --- */
@@ -603,8 +609,10 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-.about-hero:hover .about-image img {
-    transform: scale(1);
+@media (hover: hover) {
+    .about-hero:hover .about-image img {
+        transform: scale(1);
+    }
 }
 
 .about-content { 
@@ -650,8 +658,10 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-.approach-card:hover .circle-profile-img {
-    transform: scale(1);
+@media (hover: hover) {
+    .approach-card:hover .circle-profile-img {
+        transform: scale(1);
+    }
 }
 
 .resume-btn-group { 
@@ -720,8 +730,10 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-.fixed-card:hover .card-img-zone img {
-    transform: scale(1); 
+@media (hover: hover) {
+    .fixed-card:hover .card-img-zone img {
+        transform: scale(1); 
+    }
 }
 
 .card-info-zone { 
@@ -1119,21 +1131,29 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
         margin: 0;
     }
 
-    .portfolio-action-btn:hover i {
-        transform: scale(1.1);
-    }
+    @media (hover: hover) {
+        .portfolio-action-btn:hover i {
+            transform: scale(1.1);
+        }
 
-    /* ALL BUTTONS IN MOBILE INHERIT THE UNIFIED HOVER STATE */
-    .portfolio-action-btn:hover {
-        background-color: var(--btn-bg-hover) !important;
-        color: var(--btn-text-hover) !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
-    }
+        /* ALL BUTTONS IN MOBILE INHERIT THE UNIFIED HOVER STATE */
+        .portfolio-action-btn:hover {
+            background-color: var(--btn-bg-hover) !important;
+            color: var(--btn-text-hover) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
+        }
 
-    .portfolio-action-btn:hover i {
-        color: var(--btn-text-hover) !important;
-        transform: none !important;
+        .portfolio-action-btn:hover i {
+            color: var(--btn-text-hover) !important;
+            transform: none !important;
+        }
+
+        .close-nav-btn:hover {
+            background-color: var(--btn-bg-hover);
+            color: var(--btn-text-hover);
+            transform: scale(1.05); 
+        }
     }
 
     .close-nav-btn {
@@ -1153,12 +1173,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
         background-color: var(--bg-card-alt);
         z-index: 2001; 
         transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .close-nav-btn:hover {
-        background-color: var(--btn-bg-hover);
-        color: var(--btn-text-hover);
-        transform: scale(1.05); 
     }
     
     .about-hero, .approach-card, .service-card, .pricing-card, 
