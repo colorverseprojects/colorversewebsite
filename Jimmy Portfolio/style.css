@@ -272,6 +272,52 @@ video {
         color: var(--btn-text-hover);
         transform: scale(1.05);
     }
+
+    #scrollTopBtn.docked:active:not(.disable-hover) {
+        transform: translateY(calc(-50% - 5px)) !important; 
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    /* --- ADDING HOVER FEELING FOR MOBILE TAPS --- */
+    .header-skull-icon i:active, 
+    .pricing-icon:active, 
+    .quote-icon:active, 
+    .contact-item i:active, 
+    .discord-logo:active, 
+    .info-icon:active, 
+    .service-icon:active {
+        transform: translateY(-3px);
+    }
+
+    .header-logo-container img:active, 
+    .nav-avatar-container img:active, 
+    .testi-author img:active, 
+    .skill-tag:active {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .header-brand-text:active, .nav-name:active, .nav-bio:active, .folder-label:active, 
+    .section-title:active, .about-description:active, .approach-text h3:active, .approach-text p:active, 
+    .card-info-zone h3:active, .card-info-zone p:active, .service-card h3:active, .service-card p:active, 
+    .pricing-card h3:active, .price-tag:active, .pricing-desc p:active, .pricing-features li:active, .testi-text:active, .testi-author h4:active, 
+    .testi-author span:active, .contact-info h3:active, .contact-info p:active, .contact-info h4:active, 
+    .contact-item span:active, .discord-card h3:active, .discord-card p:active, .grid-footer p:active,
+    .welcome-banner h2:active, .welcome-banner p:active, .info-block h4:active, .info-block p:active, .info-block strong:active, .pricing-badge:active,
+    .pricing-footer p:active, .price-sub:active, .includes-title:active, .please-read-title:active {
+        transform: translateY(-3px);
+        text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .grid-header:active, .grid-nav:active, .grid-footer:active {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .about-hero:active .about-image img,
+    .approach-card:active .circle-profile-img,
+    .fixed-card:active .card-img-zone img {
+        transform: scale(1);
+    }
 }
 
 #scrollTopBtn {
@@ -312,7 +358,6 @@ video {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    /* FIX: will-change removed to stop browser graphics rendering issues */
 }
 
 .scroll-pop.show-pop {
@@ -474,8 +519,10 @@ video {
 }
 
 .header-skull-icon i, .service-icon, .contact-item i { font-size: var(--icon-md); }
-.quote-icon { font-size: var(--icon-lg); }
-.pricing-icon, .info-icon { font-size: var(--icon-xl); } 
+
+/* --- Z-INDEX FIX TO ENSURE TOUCH EVENTS HIT THE ICONS PERFECTLY --- */
+.quote-icon { font-size: var(--icon-lg); position: absolute; top: 25px; right: 25px; z-index: 5; }
+.pricing-icon, .info-icon { font-size: var(--icon-xl); z-index: 5; position: relative;} 
 
 .contact-socials-grid a svg { 
     width: var(--icon-sm); 
@@ -502,7 +549,6 @@ img {
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
-    /* pointer-events: none; HAS BEEN REMOVED TO RESTORE HOVER EFFECTS */
 }
 
 .grid-skeleton {
@@ -613,6 +659,7 @@ img {
     height: 100%; 
 }
 
+/* --- Z-INDEX FIX --- */
 .service-icon-box {
     display: flex;
     align-items: center;
@@ -623,6 +670,7 @@ img {
     position: absolute; 
     top: 25px; 
     left: 25px; 
+    z-index: 5;
 }
 
 .pricing-grid { 
@@ -693,7 +741,6 @@ img {
     50% { transform: translateY(10px); }
 }
 
-/* Removed margin-top so it adheres strictly to global gap geometry */
 .pricing-info-horizontal { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
@@ -733,7 +780,6 @@ img {
     height: 100%; 
 }
 
-.quote-icon { position: absolute; top: 25px; right: 25px; }
 .testi-text { font-style: italic; position: relative; z-index: 2; padding-right: 60px; flex-grow: 1; margin-bottom: 25px; }
 .testi-author { display: flex; align-items: center; gap: 15px; }
 .testi-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); }
@@ -812,7 +858,6 @@ img {
     .nav-avatar-container img { width: clamp(50px, 10vh, 80px); height: clamp(50px, 10vh, 80px); }
     .nav-bio { font-size: 0.75rem; line-height: 1.2; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     
-    /* UPDATED: Nav Links sizing for mobile */
     .nav-links-list a { 
         padding: 10px 15px; 
         font-size: 1rem; 
