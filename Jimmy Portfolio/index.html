@@ -671,12 +671,7 @@
                         behavior: "smooth"
                     });
                     
-                    // Temporarily disable pointer events so the browser forcefully drops the "hover" state
-                    topBtn.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        topBtn.style.pointerEvents = 'auto';
-                        topBtn.blur(); // Forces the button to clear the "sticky hover" on mobile after tapping
-                    }, 500);
+                    topBtn.blur(); // Forces the button to clear the "sticky hover" on mobile after tapping
                 });
             });
         </script>
