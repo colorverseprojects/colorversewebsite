@@ -560,7 +560,8 @@
                 </div>
                 
                 <div class="dock-target"></div>
-                <button id="scrollTopBtn" title="Go to top" ontouchstart="">
+
+                <button id="scrollTopBtn" title="Go to top">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             </footer>
@@ -667,7 +668,7 @@
                     }
                 });
 
-                // BLUR FIX TO INSTANTLY DROP FOCUS SO BUTTON DOES NOT STAY HIGHLIGHTED
+                // FIX FOR STICKY MOBILE HOVER ON ARROW BUTTON
                 topBtn.addEventListener("click", function(e) {
                     e.preventDefault();
                     window.scrollTo({
