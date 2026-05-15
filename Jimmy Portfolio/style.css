@@ -806,7 +806,16 @@ img {
     .nav-profile, .nav-links-list, .nav-line, .nav-cta-wrap { width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; }
     .nav-avatar-container img { width: clamp(50px, 10vh, 80px); height: clamp(50px, 10vh, 80px); }
     .nav-bio { font-size: 0.75rem; line-height: 1.2; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .nav-links-list a { padding: 10px 15px; font-size: 1rem; min-height: 40px; margin-bottom: 5px; }
+    
+    /* UPDATED: Nav Links sizing for mobile */
+    .nav-links-list a { 
+        padding: 10px 15px; 
+        font-size: 1rem; 
+        min-height: 40px; 
+        max-width: 260px;          
+        margin: 0 auto 8px auto;   
+    }
+    
     .nav-cta-wrap { margin-top: 10px; margin-bottom: 10px; display: flex; justify-content: center; }
     .nav-hire-btn { padding: 8px 25px; font-size: 0.85rem; }
     .portfolio-action-btn { cursor: pointer; display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border: 1px solid var(--border-color) !important; border-radius: var(--btn-radius) !important; background-color: transparent !important; box-shadow: 0 0 10px rgba(255, 255, 255, 0.15) !important; z-index: 1001; transition: all 0.3s ease; }
