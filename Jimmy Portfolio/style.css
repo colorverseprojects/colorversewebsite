@@ -85,7 +85,7 @@ h1, h2, h3, p { margin: 0; color: var(--text-primary); }
 a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
 
 video {
-    filter: grayscale(100%);
+    filter: grayscale(100%) brightness(40%);
 }
 
 .bg-video {
@@ -385,13 +385,11 @@ video {
     margin-top: 30px;
 }
 
-/* FIX: Centered section titles perfectly on the page */
 .folder-label { 
     font-size: var(--fs-folder-label); 
     border-left: 4px solid var(--border-color); 
     padding-left: 15px; 
-    margin: 0 auto var(--gap-section) auto; 
-    display: table;
+    margin-bottom: var(--gap-section); 
 }
 
 .section-title { font-size: var(--fs-section-title); }
@@ -430,7 +428,7 @@ video {
 .testi-author span, .contact-info h3, .contact-info p, .contact-info h4, 
 .contact-item span, .discord-card h3, .discord-card p, .grid-footer p, 
 .welcome-banner h2, .welcome-banner p, .info-block h4, .info-block p, .info-block strong, .pricing-badge,
-.pricing-footer p, .price-sub {
+.pricing-footer p, .price-sub, .please-read-title {
     transition: transform 0.3s ease, text-shadow 0.3s ease;
     display: inline-block; 
     cursor: default;
@@ -454,7 +452,7 @@ video {
     .testi-author span:hover, .contact-info h3:hover, .contact-info p:hover, .contact-info h4:hover, 
     .contact-item span:hover, .discord-card h3:hover, .discord-card p:hover, .grid-footer p:hover,
     .welcome-banner h2:hover, .welcome-banner p:hover, .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
-    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover {
+    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .please-read-title:hover {
         transform: translateY(-3px);
         text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
     }
@@ -604,7 +602,7 @@ img {
     padding: 85px 30px 30px; 
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: flex-start; 
     text-align: left;
     position: relative; 
     height: 100%; 
@@ -635,7 +633,7 @@ img {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: center; 
+    justify-content: flex-start; 
     text-align: center; 
     position: relative; 
     height: 100%; 
@@ -662,7 +660,35 @@ img {
 .pricing-footer { width: 100%; margin-top: auto; padding-top: 15px; text-align: center; }
 .pricing-footer p { font-style: italic; opacity: 0.8; }
 
-/* FIX: Set margin-top to 0 so the gap comes purely from the section title above it */
+/* ======================================================================= */
+/* NEW PLEASE READ SECTION EXTRAS                                          */
+/* ======================================================================= */
+.please-read-header {
+    text-align: center;
+    margin-bottom: var(--gap-section);
+}
+
+.please-read-title {
+    font-size: var(--fs-folder-label);
+    font-weight: bold;
+    display: inline-block;
+    margin: 0;
+}
+
+.please-read-arrow {
+    display: block;
+    font-size: var(--icon-lg);
+    margin-top: 15px;
+    color: var(--text-primary);
+    animation: floatDown 2s infinite ease-in-out;
+}
+
+@keyframes floatDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* Removed margin-top so it adheres strictly to global gap geometry */
 .pricing-info-horizontal { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
@@ -677,7 +703,7 @@ img {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: center; 
+    justify-content: flex-start; 
     text-align: center; 
     gap: 15px; 
     height: 100%; 
@@ -698,7 +724,7 @@ img {
     position: relative; 
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: flex-start; 
     height: 100%; 
 }
 
