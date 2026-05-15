@@ -1,6 +1,5 @@
 /* ======================================================================= */
 /* 1. GLOBAL DESIGN SYSTEM (CSS VARIABLES)                                 */
-/* Change any value here, and it updates across all connected web pages!   */
 /* ======================================================================= */
 :root {
     /* --- COLOR PALETTE --- */
@@ -19,40 +18,38 @@
     --btn-text-hover: #000000;
 
     /* --- BORDER RADII FOR GLOBAL SHAPES --- */
-    --card-radius: 15px;      /* Restored main content curves */
-    --btn-radius: 8px;        /* Restored standard button curve */
-    --pill-radius: 20px;      /* Restored fully rounded badge shapes */
+    --card-radius: 15px;      
+    --btn-radius: 8px;        
+    --pill-radius: 20px;      
 
     /* --- FLUID TYPOGRAPHY (TEXT SIZES) --- */
-    /* clamp(min-size, preferred-size, max-size) */
-    --fs-body: clamp(0.9rem, 1.5vw, 1rem);            /* Paragraphs, descriptions */
-    --fs-subtext: clamp(0.7rem, 1.2vh, 0.85rem);      /* Bios, tiny tags, testamonial span */
-    --fs-folder-label: clamp(1.3rem, 2.5vw, 1.5rem);  /* Section Headers (e.g., About Me) */
-    --fs-section-title: clamp(1.4rem, 2.5vw, 1.8rem); /* Internal Headers (e.g., Creative Pro) */
-    --fs-banner-h2: clamp(1.6rem, 3vw, 2rem);         /* Welcome Banner Header */
-    --fs-card-h3: clamp(1.1rem, 2vw, 1.3rem);         /* Small card headers */
-    --fs-price-tag: clamp(1.8rem, 3.5vw, 2.5rem);     /* Huge pricing numbers */
+    --fs-body: clamp(0.9rem, 1.5vw, 1rem);            
+    --fs-subtext: clamp(0.7rem, 1.2vh, 0.85rem);      
+    --fs-folder-label: clamp(1.3rem, 2.5vw, 1.5rem);  
+    --fs-section-title: clamp(1.4rem, 2.5vw, 1.8rem); 
+    --fs-banner-h2: clamp(1.6rem, 3vw, 2rem);         
+    --fs-card-h3: clamp(1.1rem, 2vw, 1.3rem);         
+    --fs-price-tag: clamp(1.8rem, 3.5vw, 2.5rem);     
     
-    /* Specific variable for sidebar name to ensure it fits */
     --fs-nav-name: clamp(1.2rem, 2.5vh, 1.8rem);
 
     /* --- ICON SIZING --- */
-    --icon-sm: 1.1rem; /* Tiny inline icons */
-    --icon-md: 1.5rem; /* Standard buttons/list icons */
-    --icon-lg: 2.5rem; /* Testimonial quotes, large badges */
-    --icon-xl: 2.8rem; /* Giant pricing icons */
+    --icon-sm: 1.1rem; 
+    --icon-md: 1.5rem; 
+    --icon-lg: 2.5rem; 
+    --icon-xl: 2.8rem; 
 
     /* --- GLOBAL SPACING (GAPS BETWEEN DIVS) --- */
-    --gap-section: 70px; /* Huge gap between your main vertical sections */
-    --gap-grid: 20px;    /* Gap between cards in a row */
+    --gap-section: 70px; 
+    --gap-grid: 20px;    
 }
 
 /* ======================================================================= */
-/* 2. GLOBAL BASE STYLES (UNIVERSAL FOR FUTURE PAGES)                      */
+/* 2. GLOBAL BASE STYLES                                                   */
 /* ======================================================================= */
 * { 
     box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent; /* Strips OS-level gray boxes on mobile taps */
+    -webkit-tap-highlight-color: transparent; 
 }
 
 html, body {
@@ -60,7 +57,6 @@ html, body {
     padding: 0; 
     font-family: 'Segoe UI', sans-serif;
     
-    /* INSTANT BLACK FALLBACK TO PREVENT WHITE FLASH ON MOBILE REFRESH */
     background-color: #000000;
     
     color: var(--text-primary); 
@@ -68,38 +64,33 @@ html, body {
     line-height: 1.6;
     scroll-behavior: smooth;
     
-    position: relative; /* Setup for absolute video positioning */
-    z-index: 1; /* Ensures content stays above the video */
+    position: relative; 
+    z-index: 1; 
 }
 
-/* Base typography ensuring future generic tags grab correct sizing */
 h1, h2, h3, p { margin: 0; color: var(--text-primary); }
 a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
 
-/* GLOBAL VIDEO FILTER RULE - ALL VIDEOS ARE B&W BY DEFAULT */
 video {
     filter: grayscale(100%);
 }
 
-/* --- FULLSCREEN BACKGROUND VIDEO --- */
 .bg-video {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    object-fit: cover; /* Ensures video scales perfectly without distorting */
-    z-index: -100; /* Forces video behind everything else */
-    pointer-events: none; /* Prevents user interactions */
+    object-fit: cover; 
+    z-index: -100; 
+    pointer-events: none; 
 }
 
-/* --- PREVENT GLITCHING ON WINDOW RESIZE --- */
 .resize-animation-stopper * {
     animation: none !important;
     transition: none !important;
 }
 
-/* --- CONSISTENT SECTION SPACING --- */
 .portfolio-isolated-zone { 
     max-width: 1300px; 
     margin: 0 auto; 
@@ -110,12 +101,10 @@ video {
     word-wrap: break-word;
 }
 
-/* --- FORCED WHITE OUTLINES AT ALL TIMES --- */
 .grid-header, .grid-nav, .grid-footer {
     border: 1px solid var(--border-color) !important;
 }
 
-/* --- THE GHOST ANCHOR --- */
 .dock-target {
     position: absolute;
     top: 50%;
@@ -150,7 +139,6 @@ video {
     background-color: var(--bg-card); 
 }
 
-/* GLOBAL HOVER STATE SYSTEM - ALL HOVERS FULLY RESTORED AND ACTIVE */
 @media (hover: hover) and (pointer: fine) {
     .nav-links-list a:hover, 
     .nav-socials a:hover, 
@@ -166,7 +154,6 @@ video {
         border-color: var(--btn-border) !important;
     }
 
-    /* Separate out the scrollTopBtn hover to handle the mobile sticky bug smoothly */
     #scrollTopBtn:hover:not(.disable-hover) {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
@@ -193,7 +180,6 @@ video {
         fill: var(--btn-text-hover) !important;
     }
 
-    /* Non-button Icon Hovers */
     .header-skull-icon i:hover, 
     .pricing-icon:hover, 
     .quote-icon:hover, 
@@ -218,7 +204,6 @@ video {
     }
 }
 
-/* Active states for mobile touch interactions */
 @media (hover: none) {
     .nav-links-list a:active, 
     .nav-socials a:active, 
@@ -252,7 +237,6 @@ video {
     }
 }
 
-/* --- SCROLL-TO-TOP BUTTON EXCEPTIONS --- */
 #scrollTopBtn {
     position: fixed;
     bottom: 10px; 
@@ -261,7 +245,7 @@ video {
     font-size: 16px;
     cursor: pointer;
     padding: 0;
-    border-radius: 50% !important; /* Restored Circle */
+    border-radius: 50% !important; 
     width: 40px; 
     height: 40px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
@@ -286,7 +270,6 @@ video {
     box-shadow: none; 
 }
 
-/* --- POP EFFECT ON SCROLL CLASSES --- */
 .scroll-pop {
     opacity: 0;
     transform: translateY(40px) scale(0.95);
@@ -299,7 +282,6 @@ video {
     transform: translateY(0) scale(1);
 }
 
-/* --- 3. CONSISTENT BORDERS & CONTAINER LIFT EFFECTS --- */
 .grid-header, .grid-nav, .grid-footer, .welcome-banner, .about-hero, 
 .approach-card, .fixed-card, .service-card, .pricing-card, 
 .testimonial-card, .contact-card, .discord-card, .info-block, .service-icon-box {
@@ -329,21 +311,21 @@ video {
 /* ======================================================================= */
 
 .nav-cta-wrap {
-    margin-top: clamp(15px, 2vh, 25px); /* Pushes the button closer to nav links */
+    margin-top: clamp(15px, 2vh, 25px); 
     margin-bottom: clamp(10px, 2vh, 20px); 
     width: 100%;
     display: flex;
-    justify-content: center; /* Centers the button */
+    justify-content: center; 
 }
 
 .nav-hire-btn {
     display: flex; 
     align-items: center; 
-    justify-content: center; /* Center content inside */
-    padding: clamp(6px, 1vh, 10px) 25px; /* Smaller padding globally */
+    justify-content: center; 
+    padding: clamp(6px, 1vh, 10px) 25px; 
     font-weight: bold; 
-    font-size: clamp(0.85rem, 1.5vh, 1rem); /* Smaller text globally */
-    width: auto; /* Button hugs text */
+    font-size: clamp(0.85rem, 1.5vh, 1rem); 
+    width: auto; 
 }
 
 .nav-hire-btn i {
@@ -455,10 +437,9 @@ video {
     display: inline-block;
 }
 
-/* Apply Global Icon Sizing Variables */
 .header-skull-icon i, .service-icon, .contact-item i { font-size: var(--icon-md); }
 .quote-icon { font-size: var(--icon-lg); }
-.pricing-icon, .info-icon { font-size: var(--icon-xl); } /* .info-icon matched with large pricing icons */
+.pricing-icon, .info-icon { font-size: var(--icon-xl); } 
 
 .contact-socials-grid a svg { 
     width: var(--icon-sm); 
@@ -466,7 +447,6 @@ video {
     fill: currentColor;
 }
 
-/* --- PERFECTLY PROPORTIONED SIDE NAV ICONS --- */
 .nav-socials a i, 
 .nav-socials a svg {
     font-size: 1.1rem; 
@@ -491,7 +471,6 @@ video {
     align-items: start; 
 }
 
-/* PERFECT SYMMETRICAL HEADER */
 .grid-header { 
     grid-area: header; 
     height: 60px !important; 
@@ -528,7 +507,7 @@ video {
     width: 40px; 
     display: block; 
     flex-shrink: 0; 
-    border-radius: 50%; /* Restored Circle */
+    border-radius: 50%; 
     object-fit: cover; 
 }
 
@@ -538,10 +517,8 @@ video {
     white-space: nowrap; 
 }
 
-/* --- THE SIDE NAVIGATION --- */
 .grid-nav { 
     grid-area: nav; 
-    /* Top and bottom padding scaled with screen height to prevent pushing elements off screen */
     padding: clamp(20px, 4vh, 40px) 25px; 
     position: sticky;
     top: 0;
@@ -549,12 +526,10 @@ video {
     display: flex;
     flex-direction: column;
     
-    /* STRONGLY PREVENTS SCROLLING ON DESKTOP */
     overflow: hidden; 
     border-radius: 0 !important; 
 }
 
-/* These items will NEVER compress or warp on a smaller monitor */
 .nav-profile, .nav-line, .nav-links-list, .nav-cta-wrap {
     flex-shrink: 0; 
 }
@@ -564,10 +539,9 @@ video {
 }
 
 .nav-avatar-container img { 
-    /* Scales down slightly on small heights to ensure perfect fit */
     width: clamp(60px, 12vh, 110px);  
     height: clamp(60px, 12vh, 110px); 
-    border-radius: 50%; /* Restored Circle */
+    border-radius: 50%; 
     object-fit: cover; 
     display: block; 
     margin: 0 auto; 
@@ -621,7 +595,6 @@ video {
     display: flex; 
     align-items: center; 
     justify-content: flex-start; 
-    /* Scaled padding specifically to match viewport height */
     padding: clamp(8px, 1.2vh, 12px) clamp(15px, 2vw, 20px); 
     margin-bottom: clamp(5px, 1vh, 10px); 
     font-weight: bold;
@@ -703,7 +676,7 @@ video {
 .approach-image-wrapper {
     width: 200px; 
     height: 200px; 
-    border-radius: 50%; /* Restored Circle */ 
+    border-radius: 50%; 
     flex-shrink: 0; 
     border: 1px solid var(--border-color); 
     overflow: hidden; 
@@ -917,14 +890,14 @@ video {
     padding: 30px; 
     display: flex; 
     flex-direction: column; 
-    align-items: center; /* FIXED to center content */
-    text-align: center; /* FIXED to center content */
+    align-items: center; 
+    text-align: center; 
     gap: 15px; 
 }
 
 .info-content { 
     flex-grow: 1; 
-    text-align: center; /* FIXED to center content */
+    text-align: center; 
     width: 100%;
 }
 
@@ -961,7 +934,7 @@ video {
 .testi-author img { 
     width: 50px; 
     height: 50px; 
-    border-radius: 50%; /* Restored Circle */
+    border-radius: 50%; 
     object-fit: cover; 
     border: 1px solid var(--border-color); 
 }
@@ -1040,7 +1013,6 @@ video {
     font-weight: bold; 
 }
 
-/* --- PERFECT SYMMETRICAL FOOTER --- */
 .grid-footer { 
     grid-area: footer; 
     height: 60px !important; 
@@ -1131,7 +1103,7 @@ video {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding: 80px 30px 60px !important; 
+        padding: 60px 20px 30px !important; 
     }
 
     .grid-nav::-webkit-scrollbar {
@@ -1152,10 +1124,40 @@ video {
         margin-right: auto;
     }
 
+    /* SHRINK AVATAR FOR MOBILE */
+    .nav-avatar-container img {
+        width: clamp(50px, 10vh, 80px);  
+        height: clamp(50px, 10vh, 80px); 
+    }
+
+    /* TRUNCATE BIO TO SAVE VERTICAL SPACE */
+    .nav-bio {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        margin-bottom: 5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
     .nav-links-list a {
-        padding: 16px 20px; 
-        font-size: 1.1rem;
-        min-height: 55px;
+        padding: 10px 15px; 
+        font-size: 1rem;
+        min-height: 40px;
+        margin-bottom: 5px;
+    }
+
+    .nav-cta-wrap {
+        margin-top: 10px; 
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center; 
+    }
+
+    .nav-hire-btn {
+        padding: 8px 25px; 
+        font-size: 0.85rem; 
     }
 
     /* THE GLOWING WHITE BORDER ACTIVE STATE FOR HEADER MENU ICON */
@@ -1191,7 +1193,6 @@ video {
             transform: scale(1.1);
         }
 
-        /* ALL BUTTONS IN MOBILE INHERIT THE UNIFIED HOVER STATE */
         .portfolio-action-btn:hover {
             background-color: var(--btn-bg-hover) !important;
             color: var(--btn-text-hover) !important;
@@ -1211,7 +1212,6 @@ video {
         }
     }
 
-    /* Mobile touch states */
     @media (hover: none) {
         .portfolio-action-btn:active {
             background-color: var(--btn-bg-hover) !important;

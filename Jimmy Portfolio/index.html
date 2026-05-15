@@ -577,7 +577,7 @@
                 menuIcon.addEventListener('click', (e) => {
                     if (window.innerWidth <= 992) {
                         sideNav.classList.add('nav-active');
-                        menuIcon.classList.add('active'); // Triggers the glowing white border
+                        menuIcon.classList.add('active'); 
                         e.stopPropagation(); 
                     }
                 });
@@ -653,11 +653,9 @@
                     if (dockTarget) {
                         const targetRect = dockTarget.getBoundingClientRect();
                         
-                        // Locked logic: Button is strictly 40px, Gap is strictly 10px globally
                         const bottomOffset = 10; 
                         const btnHeight = 40; 
                         
-                        // Calculates exactly where the top pixel of the button sits on your screen
                         const fixedTop = window.innerHeight - bottomOffset - btnHeight;
 
                         if (targetRect.top <= fixedTop) {
@@ -668,14 +666,13 @@
                     }
                 });
 
-                // BLUR FIX TO INSTANTLY DROP FOCUS SO BUTTON DOES NOT STAY HIGHLIGHTED
                 topBtn.addEventListener("click", function(e) {
                     e.preventDefault();
                     window.scrollTo({
                         top: 0,
                         behavior: "smooth"
                     });
-                    this.blur(); // Forces the button to instantly un-hover/lose focus after click
+                    this.blur(); 
                 });
             });
         </script>
