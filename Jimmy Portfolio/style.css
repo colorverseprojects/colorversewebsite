@@ -385,12 +385,13 @@ video {
     margin-top: 30px;
 }
 
-/* FIX: Forces perfect vertical symmetry so titles sit in the exact middle */
+/* FIX: Centered section titles perfectly on the page */
 .folder-label { 
     font-size: var(--fs-folder-label); 
     border-left: 4px solid var(--border-color); 
     padding-left: 15px; 
-    margin-bottom: var(--gap-section); 
+    margin: 0 auto var(--gap-section) auto; 
+    display: table;
 }
 
 .section-title { font-size: var(--fs-section-title); }
@@ -661,11 +662,12 @@ img {
 .pricing-footer { width: 100%; margin-top: auto; padding-top: 15px; text-align: center; }
 .pricing-footer p { font-style: italic; opacity: 0.8; }
 
+/* FIX: Set margin-top to 0 so the gap comes purely from the section title above it */
 .pricing-info-horizontal { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
     gap: var(--gap-grid); 
-    margin-top: 30px; 
+    margin-top: 0; 
     align-items: stretch; 
     grid-auto-rows: 1fr;
 }
