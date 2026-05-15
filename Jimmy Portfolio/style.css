@@ -62,8 +62,8 @@ html, body {
     /* INSTANT BLACK FALLBACK TO PREVENT WHITE FLASH ON MOBILE REFRESH */
     background-color: #000000;
     
-    /* BLACK GEOMETRIC BACKGROUND DESIGN */
-    background-image: url('https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?q=80&w=1920&auto=format&fit=crop');
+    /* NEW DARK 3D ABSTRACT ART BACKGROUND */
+    background-image: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -191,39 +191,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     #scrollTopBtn.docked:hover {
         transform: translateY(calc(-50% - 5px)) !important; 
         box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
-    }
-}
-
-/* For devices that don't support hover (like touchscreens that bug out), we remove the transform so it doesn't get stuck */
-@media (hover: none) {
-    .nav-links-list a:active, 
-    .nav-socials a:active, 
-    .contact-socials-grid a:active,
-    .nav-hire-btn:active, 
-    .about-more-btn:active, 
-    .discord-btn:active,
-    .close-nav-btn:active,
-    #scrollTopBtn:active {
-        background-color: var(--btn-bg-hover) !important;
-        color: var(--btn-text-hover) !important;
-        border-color: var(--btn-border) !important;
-    }
-    
-    .nav-links-list a:active i, 
-    .nav-links-list a:active span,
-    .nav-socials a:active i,
-    .nav-socials a:active svg,
-    .contact-socials-grid a:active i,
-    .contact-socials-grid a:active svg,
-    .nav-hire-btn:active span, 
-    .nav-hire-btn:active i, 
-    .about-more-btn:active span, 
-    .about-more-btn:active i, 
-    .discord-btn:active span, 
-    .discord-btn:active i,
-    .close-nav-btn:active i {
-        color: var(--btn-text-hover) !important;
-        fill: var(--btn-text-hover) !important;
     }
 }
 
@@ -1033,7 +1000,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     width: calc(100% - 60px); 
     justify-self: center;     
     margin-bottom: 20px !important; 
-    border-radius: 0 !important; 
 }
 
 /* ======================================================================= */

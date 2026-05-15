@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #000000;">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ColorVerse | Portfolio一緒</title>
         
+        <style>
+            html, body { background-color: #000000 !important; margin: 0; padding: 0; }
+        </style>
+
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ℛ</text></svg>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body style="background-color: #000000;">
 
         <div class="grid-skeleton">
             
@@ -665,6 +669,7 @@
                         top: 0,
                         behavior: "smooth"
                     });
+                    topBtn.blur(); // Forces the button to clear the "sticky hover" on mobile after tapping
                 });
             });
         </script>
