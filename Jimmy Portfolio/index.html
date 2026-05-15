@@ -589,6 +589,7 @@
                     if (window.innerWidth <= 992) {
                         sideNav.classList.add('nav-active');
                         menuIcon.classList.add('active'); 
+                        document.body.classList.add('no-scroll'); 
                         e.stopPropagation(); 
                     }
                 });
@@ -596,6 +597,7 @@
                 closeBtn.addEventListener('click', () => {
                     sideNav.classList.remove('nav-active');
                     menuIcon.classList.remove('active'); 
+                    document.body.classList.remove('no-scroll'); 
                 });
 
                 document.addEventListener('click', (e) => {
@@ -603,6 +605,7 @@
                         if (!sideNav.contains(e.target) && !menuIcon.contains(e.target)) {
                             sideNav.classList.remove('nav-active');
                             menuIcon.classList.remove('active'); 
+                            document.body.classList.remove('no-scroll'); 
                         }
                     }
                 });
@@ -613,6 +616,7 @@
                         if (window.innerWidth <= 992) {
                             sideNav.classList.remove('nav-active');
                             menuIcon.classList.remove('active'); 
+                            document.body.classList.remove('no-scroll'); 
                         }
                     });
                 });
@@ -628,21 +632,22 @@
                     if (window.innerWidth > 992) {
                         sideNav.classList.remove('nav-active');
                         menuIcon.classList.remove('active'); 
+                        document.body.classList.remove('no-scroll'); 
                     }
                 });
 
-                // --- POP EFFECT ON SCROLL ---
+                // --- POP EFFECT ON SCROLL (FIXED GLITCH) ---
                 const popElements = document.querySelectorAll('.scroll-pop');
-                const popObserver = new IntersectionObserver((entries) => {
+                const popObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if(entry.isIntersecting){
                             entry.target.classList.add('show-pop');
-                        } else {
-                            entry.target.classList.remove('show-pop'); 
+                            observer.unobserve(entry.target); // <--- FIX: Unobserves the element so it doesn't glitch when you scroll up and down
                         }
                     });
                 }, {
-                    threshold: 0.1 
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px" // <--- FIX: Adds a tiny buffer so it triggers perfectly
                 });
 
                 popElements.forEach(el => popObserver.observe(el));
