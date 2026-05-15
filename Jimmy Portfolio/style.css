@@ -22,16 +22,15 @@
     --btn-radius: 8px;        
     --pill-radius: 20px;      
 
-    /* --- FLUID TYPOGRAPHY (TEXT SIZES) --- */
+    /* --- YOUR ORIGINAL FLUID TYPOGRAPHY EXACTLY AS WRITTEN --- */
     --fs-body: clamp(0.9rem, 1.5vw, 1rem);            
-    --fs-subtext: clamp(0.75rem, 1.5vw, 0.85rem);      /* Fixed: Replaced vh with vw to stop rotation breaking */
+    --fs-subtext: clamp(0.7rem, 1.2vh, 0.85rem);      
     --fs-folder-label: clamp(1.3rem, 2.5vw, 1.5rem);  
     --fs-section-title: clamp(1.4rem, 2.5vw, 1.8rem); 
     --fs-banner-h2: clamp(1.6rem, 3vw, 2rem);         
     --fs-card-h3: clamp(1.1rem, 2vw, 1.3rem);         
     --fs-price-tag: clamp(1.8rem, 3.5vw, 2.5rem);     
-    
-    --fs-nav-name: clamp(1.2rem, 3vw, 1.8rem);        /* Fixed: Replaced vh with vw to stop rotation breaking */
+    --fs-nav-name: clamp(1.2rem, 2.5vh, 1.8rem);
 
     /* --- ICON SIZING --- */
     --icon-sm: 1.1rem; 
@@ -56,18 +55,15 @@ html, body {
     margin: 0; 
     padding: 0; 
     font-family: 'Segoe UI', sans-serif;
-    
     background-color: #000000;
-    
     color: var(--text-primary); 
     font-size: var(--fs-body);
     line-height: 1.6;
     scroll-behavior: smooth;
-    
     position: relative; 
     z-index: 1; 
 
-    /* Fixed: Stops iOS Safari from artificially blowing up text sizes on rotation */
+    /* THIS IS THE ONLY FIX NEEDED TO STOP MOBILE PHONES FROM RANDOMLY ENLARGING TEXT ON ROTATION */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
@@ -316,8 +312,8 @@ video {
 /* ======================================================================= */
 
 .nav-cta-wrap {
-    margin-top: clamp(15px, 2vw, 25px); /* Fixed from vh to vw */
-    margin-bottom: clamp(10px, 2vw, 20px); /* Fixed from vh to vw */
+    margin-top: clamp(15px, 2vh, 25px); 
+    margin-bottom: clamp(10px, 2vh, 20px); 
     width: 100%;
     display: flex;
     justify-content: center; 
@@ -327,9 +323,9 @@ video {
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    padding: clamp(6px, 1vw, 10px) 25px; /* Fixed from vh to vw */
+    padding: clamp(6px, 1vh, 10px) 25px; 
     font-weight: bold; 
-    font-size: clamp(0.85rem, 1.5vw, 1rem); /* Fixed from vh to vw */
+    font-size: clamp(0.85rem, 1.5vh, 1rem); 
     width: auto; 
 }
 
@@ -523,7 +519,7 @@ video {
 
 .grid-nav { 
     grid-area: nav; 
-    padding: clamp(20px, 3vw, 40px) 25px; /* Fixed from vh to vw */
+    padding: clamp(20px, 4vh, 40px) 25px; 
     position: sticky;
     top: 0;
     height: 100vh;
@@ -543,8 +539,8 @@ video {
 }
 
 .nav-avatar-container img { 
-    width: clamp(60px, 12vw, 110px);  /* Fixed from vh to vw */
-    height: clamp(60px, 12vw, 110px); /* Fixed from vh to vw */
+    width: clamp(60px, 12vh, 110px);  
+    height: clamp(60px, 12vh, 110px); 
     border-radius: 50%; 
     object-fit: cover; 
     display: block; 
@@ -554,11 +550,11 @@ video {
 
 .nav-text-group { 
     text-align: center; 
-    margin-top: clamp(8px, 1.5vw, 15px); /* Fixed from vh to vw */
+    margin-top: clamp(8px, 1.5vh, 15px); 
 }
 
 .nav-name { 
-    margin: 0 0 clamp(2px, 1vw, 5px); /* Fixed from vh to vw */
+    margin: 0 0 clamp(2px, 1vh, 5px); 
     font-size: var(--fs-nav-name); 
     white-space: nowrap; 
 }
@@ -571,7 +567,7 @@ video {
     display: flex; 
     justify-content: center; 
     gap: 12px; 
-    margin-top: clamp(8px, 1.5vw, 15px); /* Fixed from vh to vw */
+    margin-top: clamp(8px, 1.5vh, 15px); 
     flex-wrap: nowrap; 
 }
 
@@ -587,7 +583,7 @@ video {
 .nav-line { 
     border: 0; 
     border-top: 1px solid var(--border-color); 
-    margin: clamp(10px, 2vw, 20px) 0; /* Fixed from vh to vw */
+    margin: clamp(10px, 2vh, 20px) 0; 
 }
 
 .nav-links-list { 
@@ -599,10 +595,10 @@ video {
     display: flex; 
     align-items: center; 
     justify-content: flex-start; 
-    padding: clamp(8px, 1.2vw, 12px) clamp(15px, 2vw, 20px); /* Fixed from vh to vw */
-    margin-bottom: clamp(5px, 1vw, 10px); /* Fixed from vh to vw */
+    padding: clamp(8px, 1.2vh, 12px) clamp(15px, 2vw, 20px); 
+    margin-bottom: clamp(5px, 1vh, 10px); 
     font-weight: bold;
-    font-size: clamp(0.9rem, 1.8vw, 1.1rem); /* Fixed from vh to vw */
+    font-size: clamp(0.9rem, 1.8vh, 1.1rem);
 }
 
 .nav-links-list a i { 
@@ -943,16 +939,22 @@ video {
     border: 1px solid var(--border-color); 
 }
 
+/* ======================================================================= */
+/* CONTACT CARD MAP FIX                                                    */
+/* ======================================================================= */
 .contact-card { 
     display: flex; 
-    overflow: hidden; 
     min-height: 400px; 
+    padding: 40px; 
+    gap: 40px;
 }
 
 .contact-map { 
     flex: 1; 
     min-width: 300px; 
-    background: var(--bg-card-alt); 
+    border-radius: var(--card-radius);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
 }
 
 .contact-map iframe { 
@@ -963,7 +965,7 @@ video {
 
 .contact-info { 
     flex: 1; 
-    padding: 40px; 
+    padding: 0; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
@@ -1091,17 +1093,17 @@ video {
         top: 0 !important;
         left: -100% !important; 
         width: 100% !important; 
-        
-        /* Fixed: Use dynamic viewport height and auto overflow so mobile nav fully scrolls */
-        height: 100dvh !important; 
-        overflow-y: auto !important; 
-        padding-bottom: 80px !important; 
-        
+        height: 100% !important; 
         max-width: none !important;
         background-color: var(--bg-card) !important;
         border: none !important; 
         z-index: 2000 !important;
         transition: left 0.3s ease; 
+        
+        /* THIS ENSURES IT CAN SCROLL IF THE SCREEN IS SMALL */
+        overflow-y: auto !important; 
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important; /* IE and Edge */
         
         display: flex; 
         flex-direction: column;
@@ -1128,13 +1130,13 @@ video {
         margin-right: auto;
     }
 
-    /* SHRINK AVATAR FOR MOBILE */
+    /* YOUR EXACT ORIGINAL SHRINK AVATAR FOR MOBILE */
     .nav-avatar-container img {
-        width: clamp(50px, 10vw, 80px);  /* Fixed from vh to vw */
-        height: clamp(50px, 10vw, 80px); /* Fixed from vh to vw */
+        width: clamp(50px, 10vh, 80px);  
+        height: clamp(50px, 10vh, 80px); 
     }
 
-    /* TRUNCATE BIO TO SAVE VERTICAL SPACE */
+    /* YOUR EXACT ORIGINAL TRUNCATE BIO FOR COMPACT SIZE */
     .nav-bio {
         font-size: 0.75rem;
         line-height: 1.2;
@@ -1145,6 +1147,7 @@ video {
         overflow: hidden;
     }
 
+    /* YOUR EXACT ORIGINAL LINKS SIZE */
     .nav-links-list a {
         padding: 10px 15px; 
         font-size: 1rem;
@@ -1254,6 +1257,11 @@ video {
     .testimonial-card, .info-block {
         padding: 30px 25px; 
     }
+
+    /* MAP MOBILE FIX */
+    .contact-card { flex-direction: column; gap: 30px; padding: 30px 25px; }
+    .contact-map { width: 100%; height: 350px; min-height: 350px; min-width: auto; flex: none; }
+    .contact-info { padding: 0; text-align: center; }
     
     .service-card { 
         padding-top: 80px; 
@@ -1274,12 +1282,6 @@ video {
     .approach-image-wrapper { width: 160px; height: 160px; }
     
     .testimonials-grid { grid-template-columns: 1fr; }
-    
-    .contact-card { flex-direction: column; }
-    
-    .contact-map { width: 100%; height: 350px; min-height: 350px; min-width: auto; flex: none; }
-    
-    .contact-info { padding: 40px 25px; text-align: center; }
     
     .contact-details { display: inline-block; text-align: left; margin: 0 auto 30px; }
     
@@ -1302,6 +1304,9 @@ video {
     .testimonial-card, .info-block, .discord-card {
         padding: 25px 20px; 
     }
+
+    /* MAP MOBILE FIX */
+    .contact-card { gap: 20px; padding: 25px 20px; }
     
     .service-card { padding: 75px 20px 20px; } 
     
@@ -1322,8 +1327,6 @@ video {
     .about-image img { max-height: 300px; }
     
     .approach-image-wrapper { width: 130px; height: 130px; }
-    
-    .contact-info { padding: 30px 20px; }
 }
 
 @media (max-width: 550px) {
