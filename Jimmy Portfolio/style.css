@@ -273,12 +273,7 @@ video {
         transform: scale(1.05);
     }
 
-    #scrollTopBtn.docked:active:not(.disable-hover) {
-        transform: translateY(calc(-50% - 5px)) !important; 
-        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
-    }
-
-    /* --- ADDING HOVER FEELING FOR MOBILE TAPS --- */
+    /* --- NEW: ADDING HOVER FEELING FOR MOBILE TAPS --- */
     .header-skull-icon i:active, 
     .pricing-icon:active, 
     .quote-icon:active, 
@@ -358,6 +353,7 @@ video {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    /* FIX: will-change removed to stop browser graphics rendering issues */
 }
 
 .scroll-pop.show-pop {
@@ -519,10 +515,8 @@ video {
 }
 
 .header-skull-icon i, .service-icon, .contact-item i { font-size: var(--icon-md); }
-
-/* --- Z-INDEX FIX TO ENSURE TOUCH EVENTS HIT THE ICONS PERFECTLY --- */
-.quote-icon { font-size: var(--icon-lg); position: absolute; top: 25px; right: 25px; z-index: 5; }
-.pricing-icon, .info-icon { font-size: var(--icon-xl); z-index: 5; position: relative;} 
+.quote-icon { font-size: var(--icon-lg); }
+.pricing-icon, .info-icon { font-size: var(--icon-xl); } 
 
 .contact-socials-grid a svg { 
     width: var(--icon-sm); 
@@ -549,6 +543,7 @@ img {
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+    /* pointer-events: none; HAS BEEN REMOVED TO RESTORE HOVER EFFECTS */
 }
 
 .grid-skeleton {
@@ -659,7 +654,6 @@ img {
     height: 100%; 
 }
 
-/* --- Z-INDEX FIX --- */
 .service-icon-box {
     display: flex;
     align-items: center;
@@ -670,7 +664,6 @@ img {
     position: absolute; 
     top: 25px; 
     left: 25px; 
-    z-index: 5;
 }
 
 .pricing-grid { 
@@ -741,6 +734,7 @@ img {
     50% { transform: translateY(10px); }
 }
 
+/* Removed margin-top so it adheres strictly to global gap geometry */
 .pricing-info-horizontal { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
@@ -780,6 +774,7 @@ img {
     height: 100%; 
 }
 
+.quote-icon { position: absolute; top: 25px; right: 25px; }
 .testi-text { font-style: italic; position: relative; z-index: 2; padding-right: 60px; flex-grow: 1; margin-bottom: 25px; }
 .testi-author { display: flex; align-items: center; gap: 15px; }
 .testi-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); }
@@ -858,6 +853,7 @@ img {
     .nav-avatar-container img { width: clamp(50px, 10vh, 80px); height: clamp(50px, 10vh, 80px); }
     .nav-bio { font-size: 0.75rem; line-height: 1.2; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     
+    /* UPDATED: Nav Links sizing for mobile */
     .nav-links-list a { 
         padding: 10px 15px; 
         font-size: 1rem; 
