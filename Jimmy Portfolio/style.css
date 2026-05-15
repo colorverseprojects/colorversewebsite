@@ -67,7 +67,7 @@ html, body {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 
-    /* FIX: Stop text highlighting and mobile pop-ups globally */
+    /* Stop text highlighting and mobile pop-ups globally */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -75,7 +75,7 @@ html, body {
     user-select: none;
 }
 
-/* FIX: Allow text typing in forms if you ever add them */
+/* Allow text typing in forms if you ever add them */
 input, textarea {
     -webkit-user-select: auto;
     user-select: auto;
@@ -229,6 +229,10 @@ video {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
         border-color: var(--btn-border) !important;
+        
+        /* FIX: Ensure buttons pop visually when tapped on mobile */
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
     }
 
     .nav-links-list a:active i, 
@@ -247,6 +251,24 @@ video {
     #scrollTopBtn:active i {
         color: var(--btn-text-hover) !important;
         fill: var(--btn-text-hover) !important;
+    }
+    
+    /* FIX: Ensure action buttons pop visually when tapped on mobile */
+    .portfolio-action-btn:active {
+        background-color: var(--btn-bg-hover) !important;
+        color: var(--btn-text-hover) !important;
+        border-color: var(--btn-border) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
+    }
+    .portfolio-action-btn:active i {
+        color: var(--btn-text-hover) !important;
+        transform: none !important;
+    }
+    .close-nav-btn:active {
+        background-color: var(--btn-bg-hover);
+        color: var(--btn-text-hover);
+        transform: scale(1.05);
     }
 }
 
