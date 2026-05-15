@@ -143,7 +143,7 @@
                     </section>
 
                     <section class="project-folder scroll-pop">
-                        <h2 class="folder-label">Graphic Design</h2>
+                        <h2 class="folder-label">Graphic Design Projects</h2>
                         <div class="card-track">
                             <a onclick="window.location.href='../Jimmy Portfolio/3. portfolio/portfolio.html'" style="cursor: pointer;" class="fixed-card">
                                 <div class="card-img-zone">
@@ -577,7 +577,6 @@
         </div>
 
         <script>
-            // This script prevents desktop right-clicking globally
             document.addEventListener('contextmenu', event => event.preventDefault());
 
             document.addEventListener('DOMContentLoaded', () => {
@@ -636,7 +635,6 @@
                     }
                 });
 
-                // --- POP EFFECT ON SCROLL (FIXED GLITCH) ---
                 const popElements = document.querySelectorAll('.scroll-pop');
                 const popObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
@@ -652,7 +650,6 @@
 
                 popElements.forEach(el => popObserver.observe(el));
 
-                // --- BULLETPROOF ZOOM MATH JS ---
                 const topBtn = document.getElementById("scrollTopBtn");
                 const footer = document.querySelector('.grid-footer');
                 const dockTarget = document.querySelector('.dock-target');

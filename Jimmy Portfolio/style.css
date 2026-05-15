@@ -63,11 +63,9 @@ html, body {
     position: relative; 
     z-index: 1; 
 
-    /* Stop mobile text enlargement */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 
-    /* Stop text highlighting and mobile pop-ups globally */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -75,18 +73,17 @@ html, body {
     user-select: none;
 }
 
-/* THIS IS THE NEW RULE THAT LOCKS THE BACKGROUND SCROLL */
 body.no-scroll {
     overflow: hidden !important;
 }
 
-/* Allow text typing in forms if you ever add them */
 input, textarea {
     -webkit-user-select: auto;
     user-select: auto;
 }
 
-h1, h2, h3, p { margin: 0; color: var(--text-primary); }
+/* UPDATED: Added h4, h5, and h6 so they don't add massive invisible gaps */
+h1, h2, h3, h4, h5, h6, p { margin: 0; color: var(--text-primary); }
 a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
 
 video {
@@ -198,6 +195,7 @@ video {
         fill: var(--btn-text-hover) !important;
     }
 
+    /* SUPERCHARGED ICON GLOW ON HOVER */
     .header-skull-icon i:hover, 
     .pricing-icon:hover, 
     .quote-icon:hover, 
@@ -205,7 +203,8 @@ video {
     .discord-logo:hover, 
     .info-icon:hover, 
     .service-icon:hover {
-        transform: translateY(-3px);
+        transform: translateY(-5px) scale(1.15) !important; 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important; 
     }
 
     .header-logo-container img:hover, 
@@ -219,6 +218,16 @@ video {
     #scrollTopBtn.docked:hover:not(.disable-hover) {
         transform: translateY(calc(-50% - 5px)) !important; 
         box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    /* GLOBAL FLOATING HOVER ON ALL CARDS */
+    .grid-header:hover, .grid-nav:hover, .grid-footer:hover,
+    .welcome-banner:hover, .about-hero:hover, .approach-card:hover, 
+    .fixed-card:hover, .service-card:hover, .pricing-card:hover, 
+    .testimonial-card:hover, .contact-card:hover, .discord-card:hover, 
+    .info-block:hover {
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15) !important;
+        transform: translateY(-3px);
     }
 }
 
@@ -273,7 +282,7 @@ video {
         transform: scale(1.05);
     }
 
-    /* --- NEW: ADDING HOVER FEELING FOR MOBILE TAPS --- */
+    /* SUPERCHARGED ICON GLOW ON MOBILE TAPS */
     .header-skull-icon i:active, 
     .pricing-icon:active, 
     .quote-icon:active, 
@@ -281,7 +290,8 @@ video {
     .discord-logo:active, 
     .info-icon:active, 
     .service-icon:active {
-        transform: translateY(-3px);
+        transform: translateY(-5px) scale(1.15) !important;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
     }
 
     .header-logo-container img:active, 
@@ -348,12 +358,10 @@ video {
     box-shadow: none; 
 }
 
-/* --- PURE SMOOTH FADE SCROLL ANIMATION (FIXED GLITCH) --- */
 .scroll-pop {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    /* FIX: will-change removed to stop browser graphics rendering issues */
 }
 
 .scroll-pop.show-pop {
@@ -377,12 +385,6 @@ video {
 .service-icon-box {
     border: 1px solid var(--border-color); 
     border-radius: var(--card-radius); 
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .grid-header:hover, .grid-nav:hover, .grid-footer:hover {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    }
 }
 
 /* ======================================================================= */
@@ -543,7 +545,6 @@ img {
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
-    /* pointer-events: none; HAS BEEN REMOVED TO RESTORE HOVER EFFECTS */
 }
 
 .grid-skeleton {
@@ -621,10 +622,32 @@ img {
 .resume-btn-group { display: flex; gap: 15px; flex-wrap: wrap; width: 100%; margin-top: 25px; }
 .resume-btn-group .about-more-btn { margin-top: 0; flex: 1 1 calc(50% - 15px); min-width: 200px; }
 
-.card-track { display: grid; gap: var(--gap-grid); grid-auto-flow: column; grid-auto-columns: calc((100% - 60px) / 4); overflow-x: auto; padding-bottom: 20px; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
-.card-track::-webkit-scrollbar { height: 8px; display: block; }
-.card-track::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-.card-track::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+/* WHITE SCROLLBAR FIX FOR MOBILE/ALL BROWSERS */
+.card-track { 
+    display: grid; 
+    gap: var(--gap-grid); 
+    grid-auto-flow: column; 
+    grid-auto-columns: calc((100% - 60px) / 4); 
+    overflow-x: auto; 
+    padding-bottom: 20px; 
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth; 
+    scrollbar-color: #ffffff rgba(255, 255, 255, 0.2); 
+}
+.card-track::-webkit-scrollbar { 
+    height: 8px; 
+    display: block; 
+    -webkit-appearance: none;
+}
+.card-track::-webkit-scrollbar-track { 
+    background: rgba(255, 255, 255, 0.1) !important; 
+    border-radius: 10px; 
+}
+.card-track::-webkit-scrollbar-thumb { 
+    background: #ffffff !important; 
+    border-radius: 10px; 
+    border: 1px solid rgba(0,0,0,0.2);
+}
 
 .fixed-card { display: flex; flex-direction: column; width: 100%; height: 380px; overflow: hidden; flex-shrink: 0; scroll-snap-align: start; }
 .card-img-zone { height: 65%; width: 100%; background: var(--bg-card-alt); overflow: hidden; }
@@ -633,7 +656,7 @@ img {
 .card-info-zone { height: 35%; padding: 15px; display: flex; flex-direction: column; justify-content: center; }
 
 /* ======================================================================= */
-/* REPEATING GRIDS ALIGNMENT FIX (Services, Pricing, Testimonials, Info)   */
+/* REPEATING GRIDS ALIGNMENT FIX                                           */
 /* ======================================================================= */
 
 .services-grid { 
@@ -707,7 +730,7 @@ img {
 .pricing-footer p { font-style: italic; opacity: 0.8; }
 
 /* ======================================================================= */
-/* NEW PLEASE READ SECTION EXTRAS                                          */
+/* PLEASE READ SECTION                                                     */
 /* ======================================================================= */
 .please-read-header {
     text-align: center;
@@ -734,7 +757,6 @@ img {
     50% { transform: translateY(10px); }
 }
 
-/* Removed margin-top so it adheres strictly to global gap geometry */
 .pricing-info-horizontal { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
@@ -781,14 +803,18 @@ img {
 
 
 /* ======================================================================= */
-/* CONTACT CARD FIX (Framed Map Look)                                      */
+/* CONTACT CARD FIX (Framed Map Look & Proper Spacing)                     */
 /* ======================================================================= */
 .contact-card { display: flex; min-height: 400px; padding: 40px; gap: 40px; }
 .contact-map { flex: 1; min-width: 300px; border-radius: var(--card-radius); border: 1px solid var(--border-color); overflow: hidden; }
-.contact-map iframe { width: 100%; height: 100%; display: block; pointer-events: auto; } /* Map needs to be interactive */
+.contact-map iframe { width: 100%; height: 100%; display: block; pointer-events: auto; }
 .contact-info { flex: 1; padding: 0; display: flex; flex-direction: column; justify-content: center; }
 .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.contact-item:last-child { margin-bottom: 10px; } /* Removes gap below email */
 .contact-item i { width: 30px; text-align: center; }
+
+/* FIX: Control exact margin for Follow Me so it sits tight to the email */
+.contact-info h4 { margin-top: 15px; margin-bottom: 15px; font-size: 1.2rem; }
 
 .contact-socials-grid { display: flex; gap: 15px; flex-wrap: wrap; }
 .contact-socials-grid a { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; font-size: 1.2rem; }
@@ -853,7 +879,6 @@ img {
     .nav-avatar-container img { width: clamp(50px, 10vh, 80px); height: clamp(50px, 10vh, 80px); }
     .nav-bio { font-size: 0.75rem; line-height: 1.2; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     
-    /* UPDATED: Nav Links sizing for mobile */
     .nav-links-list a { 
         padding: 10px 15px; 
         font-size: 1rem; 
@@ -882,7 +907,9 @@ img {
     .about-hero { text-align: left; }
     .approach-image-wrapper { width: 160px; height: 160px; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .contact-details { display: inline-block; text-align: left; margin: 0 auto 30px; }
+    
+    /* FIX: Tighten the gap under the contact details in mobile */
+    .contact-details { display: inline-block; text-align: left; margin: 0 auto 10px; } 
     .contact-socials-grid { justify-content: center; }
     .discord-card { padding: 40px 25px; }
 }
