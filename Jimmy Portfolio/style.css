@@ -229,8 +229,6 @@ video {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
         border-color: var(--btn-border) !important;
-        
-        /* FIX: Ensure buttons pop visually when tapped on mobile */
         transform: translateY(-3px) !important;
         box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
     }
@@ -253,7 +251,6 @@ video {
         fill: var(--btn-text-hover) !important;
     }
     
-    /* FIX: Ensure action buttons pop visually when tapped on mobile */
     .portfolio-action-btn:active {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
@@ -388,7 +385,14 @@ video {
     margin-top: 30px;
 }
 
-.folder-label { font-size: var(--fs-folder-label); }
+/* FIX: Forces perfect vertical symmetry so titles sit in the exact middle */
+.folder-label { 
+    font-size: var(--fs-folder-label); 
+    border-left: 4px solid var(--border-color); 
+    padding-left: 15px; 
+    margin-bottom: var(--gap-section); 
+}
+
 .section-title { font-size: var(--fs-section-title); }
 
 .welcome-banner { 
@@ -489,13 +493,12 @@ video {
 /* 7. STRUCTURAL LAYOUT RULES & IMAGE SECURITY                             */
 /* ======================================================================= */
 
-/* FIX: Stops long-pressing to save images, and prevents drag-and-drop saving */
 img {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
-    pointer-events: none; /* Kills all interaction strictly on the image element itself */
+    pointer-events: none; 
 }
 
 .grid-skeleton {
@@ -556,7 +559,6 @@ img {
 .nav-links-list a i { width: 30px; margin-right: 10px; text-align: left; }
 
 .grid-main { grid-area: main; padding: 40px 30px; background-color: transparent; }
-.folder-label { border-left: 4px solid var(--border-color); padding-left: 15px; margin-bottom: 30px; }
 
 .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; align-items: stretch; }
 .about-image { width: 100%; display: flex; align-items: stretch; overflow: hidden; border-radius: var(--card-radius); }
@@ -594,13 +596,14 @@ img {
     grid-template-columns: repeat(3, 1fr); 
     gap: var(--gap-grid); 
     align-items: stretch; 
+    grid-auto-rows: 1fr;
 }
 
 .service-card { 
     padding: 85px 30px 30px; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: center; 
     text-align: left;
     position: relative; 
     height: 100%; 
@@ -623,6 +626,7 @@ img {
     grid-template-columns: repeat(3, 1fr); 
     gap: var(--gap-grid); 
     align-items: stretch; 
+    grid-auto-rows: 1fr;
 }
 
 .pricing-card { 
@@ -630,7 +634,7 @@ img {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: flex-start; 
+    justify-content: center; 
     text-align: center; 
     position: relative; 
     height: 100%; 
@@ -663,6 +667,7 @@ img {
     gap: var(--gap-grid); 
     margin-top: 30px; 
     align-items: stretch; 
+    grid-auto-rows: 1fr;
 }
 
 .info-block { 
@@ -670,7 +675,7 @@ img {
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    justify-content: flex-start; 
+    justify-content: center; 
     text-align: center; 
     gap: 15px; 
     height: 100%; 
@@ -683,6 +688,7 @@ img {
     grid-template-columns: repeat(2, 1fr); 
     gap: var(--gap-grid); 
     align-items: stretch; 
+    grid-auto-rows: 1fr;
 }
 
 .testimonial-card { 
@@ -690,7 +696,7 @@ img {
     position: relative; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: center; 
     height: 100%; 
 }
 
@@ -804,10 +810,10 @@ img {
 @media (max-width: 768px) {
     .card-track { grid-auto-columns: 100%; } 
     
-    .pricing-info-horizontal { grid-template-columns: 1fr; gap: 15px; align-items: stretch; }
-    .services-grid { grid-template-columns: 1fr; align-items: stretch; }
-    .pricing-grid { grid-template-columns: 1fr; align-items: stretch; }
-    .testimonials-grid { grid-template-columns: 1fr; align-items: stretch; }
+    .pricing-info-horizontal { grid-template-columns: 1fr; gap: 15px; align-items: stretch; grid-auto-rows: 1fr; }
+    .services-grid { grid-template-columns: 1fr; align-items: stretch; grid-auto-rows: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; align-items: stretch; grid-auto-rows: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; align-items: stretch; grid-auto-rows: 1fr; }
 
     .about-hero, .approach-card, .pricing-card, 
     .testimonial-card, .info-block, .discord-card, .contact-card { padding: 25px 20px; }
