@@ -560,8 +560,7 @@
                 </div>
                 
                 <div class="dock-target"></div>
-
-                <button id="scrollTopBtn" title="Go to top">
+                <button id="scrollTopBtn" title="Go to top" ontouchstart="">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             </footer>
@@ -668,18 +667,14 @@
                     }
                 });
 
-                // FIX FOR STICKY MOBILE HOVER ON ARROW BUTTON
-                topBtn.addEventListener("click", () => {
+                // BLUR FIX TO INSTANTLY DROP FOCUS SO BUTTON DOES NOT STAY HIGHLIGHTED
+                topBtn.addEventListener("click", function(e) {
+                    e.preventDefault();
                     window.scrollTo({
                         top: 0,
                         behavior: "smooth"
                     });
-                    
-                    // Temporarily force the button to drop hover visual state via CSS class
-                    topBtn.classList.add('disable-hover');
-                    setTimeout(() => {
-                        topBtn.classList.remove('disable-hover');
-                    }, 1000);
+                    this.blur(); // Forces the button to instantly un-hover/lose focus after click
                 });
             });
         </script>
