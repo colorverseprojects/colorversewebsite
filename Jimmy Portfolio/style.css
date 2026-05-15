@@ -62,21 +62,35 @@ html, body {
     /* INSTANT BLACK FALLBACK TO PREVENT WHITE FLASH ON MOBILE REFRESH */
     background-color: #000000;
     
-    /* TEXTURED BLACK BRICK WALL BACKGROUND DESIGN */
-    background-image: url('./x.indexpictures/websitebacktexture.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    
     color: var(--text-primary); 
     font-size: var(--fs-body);
     line-height: 1.6;
     scroll-behavior: smooth;
+    
+    position: relative; /* Setup for absolute video positioning */
+    z-index: 1; /* Ensures content stays above the video */
 }
 
 /* Base typography ensuring future generic tags grab correct sizing */
 h1, h2, h3, p { margin: 0; color: var(--text-primary); }
 a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease; }
+
+/* GLOBAL VIDEO FILTER RULE - ALL VIDEOS ARE B&W BY DEFAULT */
+video {
+    filter: grayscale(100%);
+}
+
+/* --- FULLSCREEN BACKGROUND VIDEO --- */
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures video scales perfectly without distorting */
+    z-index: -100; /* Forces video behind everything else */
+    pointer-events: none; /* Prevents user interactions */
+}
 
 /* --- PREVENT GLITCHING ON WINDOW RESIZE --- */
 .resize-animation-stopper * {
@@ -135,7 +149,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     background-color: var(--bg-card); 
 }
 
-/* GLOBAL HOVER STATE SYSTEM */
+/* GLOBAL HOVER STATE SYSTEM - ALL HOVERS FULLY RESTORED AND ACTIVE */
 @media (hover: hover) and (pointer: fine) {
     .nav-links-list a:hover, 
     .nav-socials a:hover, 
@@ -143,8 +157,16 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     .nav-hire-btn:hover, 
     .about-more-btn:hover, 
     .discord-btn:hover,
-    .close-nav-btn:hover,
-    #scrollTopBtn:hover {
+    .close-nav-btn:hover {
+        background-color: var(--btn-bg-hover) !important;
+        color: var(--btn-text-hover) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
+        border-color: var(--btn-border) !important;
+    }
+
+    /* Separate out the scrollTopBtn hover to handle the mobile sticky bug smoothly */
+    #scrollTopBtn:hover:not(.disable-hover) {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
         transform: translateY(-3px) !important;
@@ -164,7 +186,8 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
     .about-more-btn:hover i, 
     .discord-btn:hover span, 
     .discord-btn:hover i,
-    .close-nav-btn:hover i {
+    .close-nav-btn:hover i,
+    #scrollTopBtn:hover:not(.disable-hover) i {
         color: var(--btn-text-hover) !important;
         fill: var(--btn-text-hover) !important;
     }
@@ -188,7 +211,7 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
         box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
     }
 
-    #scrollTopBtn.docked:hover {
+    #scrollTopBtn.docked:hover:not(.disable-hover) {
         transform: translateY(calc(-50% - 5px)) !important; 
         box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3) !important;
     }
@@ -1077,11 +1100,6 @@ a { text-decoration: none; color: var(--text-primary); transition: all 0.3s ease
 /* MODIFIED: FULL SCREEN MOBILE & TABLET NAVIGATION (<= 992px)             */
 /* ======================================================================= */
 @media (max-width: 992px) {
-    /* FIXES THE MASSIVE ZOOMED-IN BACKGROUND BUG ON MOBILE/IOS */
-    html, body {
-        background-attachment: scroll; 
-    }
-
     .grid-skeleton { 
         grid-template-columns: 1fr; 
         grid-template-areas: "header" "main" "footer"; 
