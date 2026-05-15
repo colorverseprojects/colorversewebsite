@@ -2,7 +2,7 @@
 <html lang="en" style="background-color: #000000;">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>ColorVerse | Portfolio一緒</title>
         
         <style>
@@ -569,6 +569,9 @@
         </div>
 
         <script>
+            // FIX: This script prevents desktop right-clicking globally
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
             document.addEventListener('DOMContentLoaded', () => {
                 const menuIcon = document.querySelector('.header-skull-icon');
                 const sideNav = document.querySelector('.grid-nav');
