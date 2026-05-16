@@ -391,6 +391,7 @@ video {
 
 .welcome-banner h2 { font-size: var(--fs-banner-h2); margin: 0 0 10px 0;}
 .welcome-banner p { margin: 0;}
+.welcome-banner .about-more-btn { padding: 14px 35px; }
 
 .service-text h3 { font-size: var(--fs-card-h3); margin-bottom: 15px;}
 .pricing-card h3 { font-size: var(--fs-card-h3); }
