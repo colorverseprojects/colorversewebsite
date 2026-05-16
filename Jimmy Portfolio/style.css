@@ -198,8 +198,8 @@ video {
     .welcome-banner:hover, .about-hero:hover, .approach-card:hover, 
     .fixed-card:hover, .service-card:hover, .pricing-card:hover, 
     .testimonial-card:hover, .contact-card:hover, .discord-card:hover, .info-block:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+        transform: translateY(-5px) !important;
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15) !important;
     }
 
     #scrollTopBtn.docked:hover:not(.disable-hover) {
@@ -249,7 +249,7 @@ video {
     }
     
     /* Completely nullify text/icon secondary pops when touching the card on mobile */
-    .service-card *:active, .pricing-card *:active, .testimonial-card *:active, .info-block *:active, .approach-card *:active, .fixed-card *:active {
+    .welcome-banner *:active, .service-card *:active, .pricing-card *:active, .testimonial-card *:active, .info-block *:active, .approach-card *:active, .fixed-card *:active {
         transform: none !important;
         text-shadow: none !important;
         filter: none !important;
@@ -862,30 +862,30 @@ img {
     }
 
     /* FULL MOBILE RESET FOR THE UNIFIED POP RULES */
+    .welcome-banner h2:active, .welcome-banner p:active,
     .header-brand-text:active, .nav-name:active, .nav-bio:active, .folder-label:active,
     .section-title:active, .about-description:active, .approach-text h3:active, .approach-text p:active,
     .card-info-zone h3:active, .card-info-zone p:active, .service-card h3:active, .service-card p:active,
     .pricing-card h3:active, .price-tag:active, .pricing-desc p:active, .pricing-features li:active,
     .testi-text:active, .testi-author h4:active, .testi-author span:active, .contact-info h3:active,
     .contact-info p:active, .contact-info h4:active, .contact-item span:active, .discord-card h3:active,
-    .discord-card p:active, .grid-footer p:active, .welcome-banner h2:active, .welcome-banner p:active,
-    .info-block h4:active, .info-block p:active, .info-block strong:active, .pricing-badge:active,
-    .pricing-footer p:active, .price-sub:active, .includes-title:active, .please-read-title:active,
-    .quote-icon:active, .pricing-icon:active, .info-icon:active, .discord-logo:active, .contact-item i:active,
-    .header-logo-container img:active, .nav-avatar-container img:active,
-    .skill-tag:active, .service-icon-box:active, .testi-author img:active,
+    .discord-card p:active, .grid-footer p:active, .info-block h4:active, .info-block p:active, 
+    .info-block strong:active, .pricing-badge:active, .pricing-footer p:active, .price-sub:active, 
+    .includes-title:active, .please-read-title:active, .quote-icon:active, .pricing-icon:active, 
+    .info-icon:active, .discord-logo:active, .contact-item i:active, .header-logo-container img:active, 
+    .nav-avatar-container img:active, .skill-tag:active, .service-icon-box:active, .testi-author img:active,
+    .welcome-banner h2:hover, .welcome-banner p:hover,
     .header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover,
     .section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover,
     .card-info-zone h3:hover, .card-info-zone p:hover, .service-card h3:hover, .service-card p:hover,
     .pricing-card h3:hover, .price-tag:hover, .pricing-desc p:hover, .pricing-features li:hover,
     .testi-text:hover, .testi-author h4:hover, .testi-author span:hover, .contact-info h3:hover,
     .contact-info p:hover, .contact-info h4:hover, .contact-item span:hover, .discord-card h3:hover,
-    .discord-card p:hover, .grid-footer p:hover, .welcome-banner h2:hover, .welcome-banner p:hover,
-    .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
-    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .please-read-title:hover,
-    .quote-icon:hover, .pricing-icon:hover, .info-icon:hover, .discord-logo:hover, .contact-item i:hover,
-    .header-logo-container img:hover, .nav-avatar-container img:hover,
-    .skill-tag:hover, .service-icon-box:hover, .testi-author img:hover {
+    .discord-card p:hover, .grid-footer p:hover, .info-block h4:hover, .info-block p:hover, 
+    .info-block strong:hover, .pricing-badge:hover, .pricing-footer p:hover, .price-sub:hover, 
+    .includes-title:hover, .please-read-title:hover, .quote-icon:hover, .pricing-icon:hover, 
+    .info-icon:hover, .discord-logo:hover, .contact-item i:hover, .header-logo-container img:hover, 
+    .nav-avatar-container img:hover, .skill-tag:hover, .service-icon-box:hover, .testi-author img:hover {
         transform: none !important;
         text-shadow: none !important;
         filter: none !important;
@@ -912,7 +912,7 @@ img {
         padding: 10px 15px; 
         font-size: 1rem; 
         min-height: 40px; 
-        max-width: 260px;          
+        max-width: 260px;           
         margin: 0 auto 8px auto;   
     }
     
@@ -937,7 +937,7 @@ img {
         .close-nav-btn:active { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; transform: translateY(-3px) !important; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important; border-color: var(--btn-border) !important; } 
     }
     
-    .about-hero, .approach-card, .service-card, .pricing-card, .testimonial-card, .info-block, .contact-card { padding: 30px 25px; }
+    .welcome-banner, .about-hero, .approach-card, .service-card, .pricing-card, .testimonial-card, .info-block, .contact-card { padding: 30px 25px; }
     .contact-card { flex-direction: column; gap: 30px; }
     .contact-map { width: 100%; height: 350px; min-height: 350px; min-width: auto; flex: none; }
     .contact-info { padding: 0; text-align: center; }
@@ -964,7 +964,7 @@ img {
     .pricing-grid { grid-template-columns: 1fr; align-items: stretch; grid-auto-rows: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; align-items: stretch; grid-auto-rows: 1fr; }
 
-    .about-hero, .approach-card, .pricing-card, 
+    .welcome-banner, .about-hero, .approach-card, .pricing-card, 
     .testimonial-card, .info-block, .discord-card, .contact-card { padding: 25px 20px; }
 
     .contact-card { gap: 20px; }
