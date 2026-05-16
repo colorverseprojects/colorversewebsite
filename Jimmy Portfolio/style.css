@@ -161,8 +161,7 @@ video {
     .contact-socials-grid a:hover,
     .nav-hire-btn:hover, 
     .about-more-btn:hover, 
-    .discord-btn:hover,
-    .close-nav-btn:hover {
+    .discord-btn:hover {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
         transform: translateY(-3px) !important;
@@ -190,7 +189,6 @@ video {
     .about-more-btn:hover i, 
     .discord-btn:hover span, 
     .discord-btn:hover i,
-    .close-nav-btn:hover i,
     #scrollTopBtn:hover:not(.disable-hover) i {
         color: var(--btn-text-hover) !important;
         fill: var(--btn-text-hover) !important;
@@ -217,7 +215,6 @@ video {
     .nav-hire-btn:active, 
     .about-more-btn:active, 
     .discord-btn:active,
-    .close-nav-btn:active,
     #scrollTopBtn:active {
         background-color: var(--btn-bg-hover) !important;
         color: var(--btn-text-hover) !important;
@@ -238,27 +235,9 @@ video {
     .about-more-btn:active i, 
     .discord-btn:active span, 
     .discord-btn:active i,
-    .close-nav-btn:active i,
     #scrollTopBtn:active i {
         color: var(--btn-text-hover) !important;
         fill: var(--btn-text-hover) !important;
-    }
-    
-    .portfolio-action-btn:active {
-        background-color: var(--btn-bg-hover) !important;
-        color: var(--btn-text-hover) !important;
-        border-color: var(--btn-border) !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
-    }
-    .portfolio-action-btn:active i {
-        color: var(--btn-text-hover) !important;
-        transform: none !important;
-    }
-    .close-nav-btn:active {
-        background-color: var(--btn-bg-hover);
-        color: var(--btn-text-hover);
-        transform: scale(1.05);
     }
 
     /* Entire card containers on mobile touch */
@@ -499,8 +478,8 @@ video {
     }
 }
 
-.header-skull-icon { cursor: pointer; }
-.header-skull-icon i { color: var(--text-primary); transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
+.header-skull-icon { cursor: pointer; display: inline-block; }
+.header-skull-icon i { color: var(--text-primary); transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease; margin: 0; }
 
 .header-skull-icon i, .service-icon, .contact-item i { font-size: var(--icon-md); }
 .quote-icon { font-size: var(--icon-lg); position: absolute; top: 25px; right: 25px; }
@@ -893,7 +872,7 @@ img {
     .info-block h4:active, .info-block p:active, .info-block strong:active, .pricing-badge:active,
     .pricing-footer p:active, .price-sub:active, .includes-title:active, .please-read-title:active,
     .quote-icon:active, .pricing-icon:active, .info-icon:active, .discord-logo:active, .contact-item i:active,
-    .header-skull-icon i:active, .header-logo-container img:active, .nav-avatar-container img:active,
+    .header-logo-container img:active, .nav-avatar-container img:active,
     .skill-tag:active, .service-icon-box:active, .testi-author img:active,
     .header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover,
     .section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover,
@@ -905,7 +884,7 @@ img {
     .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
     .pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .please-read-title:hover,
     .quote-icon:hover, .pricing-icon:hover, .info-icon:hover, .discord-logo:hover, .contact-item i:hover,
-    .header-skull-icon i:hover, .header-logo-container img:hover, .nav-avatar-container img:hover,
+    .header-logo-container img:hover, .nav-avatar-container img:hover,
     .skill-tag:hover, .service-icon-box:hover, .testi-author img:hover {
         transform: none !important;
         text-shadow: none !important;
@@ -939,12 +918,24 @@ img {
     
     .nav-cta-wrap { margin-top: 10px; margin-bottom: 10px; display: flex; justify-content: center; }
     .nav-hire-btn { padding: 8px 25px; font-size: 0.85rem; }
-    .portfolio-action-btn { cursor: pointer; display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border: 1px solid var(--border-color) !important; border-radius: var(--btn-radius) !important; background-color: transparent !important; box-shadow: 0 0 10px rgba(255, 255, 255, 0.15) !important; z-index: 1001; transition: all 0.3s ease; }
+    
+    /* Cleaned up Mobile Button Overrides for strict consistency */
+    .portfolio-action-btn { cursor: pointer; display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border: 1px solid var(--border-color) !important; border-radius: var(--btn-radius) !important; background-color: transparent !important; box-shadow: 0 0 10px rgba(255, 255, 255, 0.15) !important; z-index: 1001; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; }
     .portfolio-action-btn.active { background-color: rgba(255, 255, 255, 0.1) !important; box-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important; }
-    .portfolio-action-btn i { font-size: var(--icon-md) !important; color: var(--text-primary) !important; transition: transform 0.3s ease; margin: 0; }
-    @media (hover: hover) and (pointer: fine) { .portfolio-action-btn:hover i { transform: scale(1.1); } .portfolio-action-btn:hover { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; transform: translateY(-3px) !important; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important; } .portfolio-action-btn:hover i { color: var(--btn-text-hover) !important; transform: none !important; } .close-nav-btn:hover { background-color: var(--btn-bg-hover); color: var(--btn-text-hover); transform: scale(1.05); } }
-    @media (hover: none) { .portfolio-action-btn:active { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; border-color: var(--btn-border) !important; } .portfolio-action-btn:active i { color: var(--btn-text-hover) !important; } .close-nav-btn:active { background-color: var(--btn-bg-hover); color: var(--btn-text-hover); } }
-    .close-nav-btn { display: flex; align-items: center; justify-content: center; position: absolute; top: 25px; right: 25px; width: 45px; height: 45px; font-size: var(--icon-md); color: var(--text-primary); cursor: pointer; border: 1px solid var(--border-color); border-radius: var(--btn-radius) !important; background-color: var(--bg-card-alt); z-index: 2001; transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; }
+    .portfolio-action-btn i { font-size: var(--icon-md) !important; color: var(--text-primary) !important; transition: color 0.3s ease; margin: 0; }
+    .close-nav-btn { display: flex; align-items: center; justify-content: center; position: absolute; top: 25px; right: 25px; width: 45px; height: 45px; font-size: var(--icon-md); color: var(--text-primary); cursor: pointer; border: 1px solid var(--border-color); border-radius: var(--btn-radius) !important; background-color: var(--bg-card-alt); z-index: 2001; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; }
+
+    @media (hover: hover) and (pointer: fine) { 
+        .portfolio-action-btn:hover { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; transform: translateY(-3px) !important; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important; border-color: var(--btn-border) !important; } 
+        .portfolio-action-btn:hover i { color: var(--btn-text-hover) !important; } 
+        .close-nav-btn:hover { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; transform: translateY(-3px) !important; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important; border-color: var(--btn-border) !important; } 
+    }
+    
+    @media (hover: none) { 
+        .portfolio-action-btn:active { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; transform: translateY(-3px) !important; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important; border-color: var(--btn-border) !important; } 
+        .portfolio-action-btn:active i { color: var(--btn-text-hover) !important; } 
+        .close-nav-btn:active { background-color: var(--btn-bg-hover) !important; color: var(--btn-text-hover) !important; transform: translateY(-3px) !important; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important; border-color: var(--btn-border) !important; } 
+    }
     
     .about-hero, .approach-card, .service-card, .pricing-card, .testimonial-card, .info-block, .contact-card { padding: 30px 25px; }
     .contact-card { flex-direction: column; gap: 30px; }
