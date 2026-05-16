@@ -2,7 +2,7 @@
 /* 1. GLOBAL DESIGN SYSTEM (CSS VARIABLES)                                 */
 /* ======================================================================= */
 :root {
-    color-scheme: dark; /* Forces native iOS scrollbars to be white/light */
+    color-scheme: dark;
 
     /* --- COLOR PALETTE --- */
     --bg-card: #111111;      
@@ -24,7 +24,7 @@
     --btn-radius: 8px;        
     --pill-radius: 20px;      
 
-    /* --- YOUR ORIGINAL EXACT FLUID TYPOGRAPHY --- */
+    /* --- EXACT FLUID TYPOGRAPHY (UNTOUCHED) --- */
     --fs-body: clamp(0.9rem, 1.5vw, 1rem);            
     --fs-subtext: clamp(0.7rem, 1.2vh, 0.85rem);      
     --fs-folder-label: clamp(1.3rem, 2.5vw, 1.5rem);  
@@ -65,11 +65,9 @@ html, body {
     position: relative; 
     z-index: 1; 
 
-    /* Stop mobile text enlargement */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 
-    /* Stop text highlighting globally for desktop */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -77,12 +75,10 @@ html, body {
     user-select: none;
 }
 
-/* THIS IS THE NEW RULE THAT LOCKS THE BACKGROUND SCROLL */
 body.no-scroll {
     overflow: hidden !important;
 }
 
-/* Allow text typing in forms if you ever add them */
 input, textarea {
     -webkit-user-select: auto;
     user-select: auto;
@@ -200,19 +196,12 @@ video {
         fill: var(--btn-text-hover) !important;
     }
 
-    /* ADDED: Apply the physical hover lift to the main card containers, not the icons */
+    /* Entire card containers moving slightly upwards */
     .welcome-banner:hover, .about-hero:hover, .approach-card:hover, 
     .fixed-card:hover, .service-card:hover, .pricing-card:hover, 
     .testimonial-card:hover, .contact-card:hover, .discord-card:hover, .info-block:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
-    }
-
-    .header-logo-container img:hover, 
-    .nav-avatar-container img:hover, 
-    .skill-tag:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
     }
 
     #scrollTopBtn.docked:hover:not(.disable-hover) {
@@ -272,12 +261,20 @@ video {
         transform: scale(1.05);
     }
 
-    /* ADDED: Subtle active feedback for card touches on mobile */
+    /* Entire card containers on mobile touch */
     .welcome-banner:active, .about-hero:active, .approach-card:active, 
     .fixed-card:active, .service-card:active, .pricing-card:active, 
     .testimonial-card:active, .contact-card:active, .discord-card:active, .info-block:active {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px) !important;
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    /* Completely nullify text/icon secondary pops when touching the card on mobile */
+    .service-card *:active, .pricing-card *:active, .testimonial-card *:active, .info-block *:active, .approach-card *:active, .fixed-card *:active {
+        transform: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+        box-shadow: none !important;
     }
 }
 
@@ -314,7 +311,6 @@ video {
     box-shadow: none; 
 }
 
-/* --- PURE SMOOTH FADE SCROLL ANIMATION (FIXED GLITCH) --- */
 .scroll-pop {
     opacity: 0;
     transform: translateY(15px);
@@ -432,6 +428,11 @@ video {
     width: 100%;
 }
 
+/* ======================================================================= */
+/* 5. UNIFIED POP-OUT EFFECTS (TEXT & ICONS)                               */
+/* ======================================================================= */
+
+/* Every single text line and standalone font-awesome icon mapped together */
 .header-brand-text, .nav-name, .nav-bio, .folder-label, 
 .section-title, .about-description, .approach-text h3, .approach-text p, 
 .card-info-zone h3, .card-info-zone p, .service-card h3, .service-card p, 
@@ -439,23 +440,34 @@ video {
 .testi-author span, .contact-info h3, .contact-info p, .contact-info h4, 
 .contact-item span, .discord-card h3, .discord-card p, .grid-footer p, 
 .welcome-banner h2, .welcome-banner p, .info-block h4, .info-block p, .info-block strong, .pricing-badge,
-.pricing-footer p, .price-sub, .please-read-title {
+.pricing-footer p, .price-sub, .please-read-title,
+.quote-icon, .pricing-icon, .info-icon, .contact-item i {
     transition: transform 0.3s ease, text-shadow 0.3s ease;
     display: inline-block; 
     cursor: default;
 }
 
+/* Display blocks strictly separated */
 .about-description, .approach-text p, .testi-text, .contact-info p, 
 .discord-card p, .nav-bio, .card-info-zone p, .info-block p, .pricing-desc p, .pricing-features li,
 .pricing-footer p, .service-card p, .includes-title {
     display: block; 
 }
 
+/* SVG Logo needs filter transition instead of text-shadow */
+.discord-logo {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    display: inline-block;
+}
+
 .price-sub { font-size: var(--fs-subtext); font-weight: normal; }
 .testi-author span { font-size: var(--fs-subtext); }
 .nav-bio { font-size: var(--fs-subtext); }
 
+/* This is the master hover unified application */
 @media (hover: hover) and (pointer: fine) {
+    
+    /* Unifies all text and FA icons cleanly via identical translateY and text-shadow */
     .header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover, 
     .section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover, 
     .card-info-zone h3:hover, .card-info-zone p:hover, .service-card h3:hover, .service-card p:hover, 
@@ -463,24 +475,35 @@ video {
     .testi-author span:hover, .contact-info h3:hover, .contact-info p:hover, .contact-info h4:hover, 
     .contact-item span:hover, .discord-card h3:hover, .discord-card p:hover, .grid-footer p:hover,
     .welcome-banner h2:hover, .welcome-banner p:hover, .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
-    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .please-read-title:hover {
+    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .please-read-title:hover,
+    .quote-icon:hover, .pricing-icon:hover, .info-icon:hover, .contact-item i:hover,
+    .header-skull-icon:hover i {
         transform: translateY(-3px);
         text-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Unifies SVG exactly as above via filter */
+    .discord-logo:hover {
+        transform: translateY(-3px);
+        filter: drop-shadow(0 5px 10px rgba(255, 255, 255, 0.2));
+    }
+
+    /* Unifies non-text containers like the Service Icon Box and Images via identical translateY and box-shadow */
+    .header-logo-container img:hover, 
+    .nav-avatar-container img:hover, 
+    .skill-tag:hover,
+    .service-icon-box:hover,
+    .testi-author img:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2) !important;
     }
 }
 
 .header-skull-icon { cursor: pointer; }
-.header-skull-icon i { color: var(--text-primary); }
-
-.header-skull-icon i, .pricing-icon, .quote-icon, 
-.contact-item i, .discord-logo, .header-logo-container img, 
-.nav-avatar-container img, .testi-author img, .skill-tag, .info-icon, .service-icon {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: inline-block;
-}
+.header-skull-icon i { color: var(--text-primary); transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
 
 .header-skull-icon i, .service-icon, .contact-item i { font-size: var(--icon-md); }
-.quote-icon { font-size: var(--icon-lg); }
+.quote-icon { font-size: var(--icon-lg); position: absolute; top: 25px; right: 25px; }
 .pricing-icon, .info-icon { font-size: var(--icon-xl); } 
 
 .contact-socials-grid a svg { 
@@ -537,7 +560,7 @@ img {
 
 .header-inner { width: 100%; display: flex; justify-content: space-between; align-items: center; }
 .header-right { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
-.header-logo-container img { height: 40px; width: 40px; display: block; flex-shrink: 0; border-radius: 50%; object-fit: cover; }
+.header-logo-container img { height: 40px; width: 40px; display: block; flex-shrink: 0; border-radius: 50%; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .header-brand-text { margin: 0; font-weight: bold; white-space: nowrap; }
 
 .grid-nav { 
@@ -554,7 +577,7 @@ img {
 
 .nav-profile, .nav-line, .nav-links-list, .nav-cta-wrap { flex-shrink: 0; }
 .nav-profile { margin-top: 0; }
-.nav-avatar-container img { width: clamp(60px, 12vh, 110px); height: clamp(60px, 12vh, 110px); border-radius: 50%; object-fit: cover; display: block; margin: 0 auto; border: 1px solid var(--border-color); }
+.nav-avatar-container img { width: clamp(60px, 12vh, 110px); height: clamp(60px, 12vh, 110px); border-radius: 50%; object-fit: cover; display: block; margin: 0 auto; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .nav-text-group { text-align: center; margin-top: clamp(8px, 1.5vh, 15px); }
 .nav-name { margin: 0 0 clamp(2px, 1vh, 5px); font-size: var(--fs-nav-name); white-space: nowrap; }
 .nav-bio { line-height: 1.3; }
@@ -575,7 +598,7 @@ img {
 @media (hover: hover) and (pointer: fine) { .about-hero:hover .about-image img { transform: scale(1); } }
 .about-content { width: 100%; display: flex; flex-direction: column; justify-content: center; }
 
-.skill-tag { background: var(--bg-card-alt); padding: 6px 14px; border-radius: var(--pill-radius); font-size: 0.8rem; margin: 5px 5px 0 0; }
+.skill-tag { background: var(--bg-card-alt); padding: 6px 14px; border-radius: var(--pill-radius); font-size: 0.8rem; margin: 5px 5px 0 0; transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
 
 .approach-card { padding: 40px; display: flex; align-items: center; gap: 40px; }
 .approach-image-wrapper { width: 200px; height: 200px; border-radius: 50%; flex-shrink: 0; border: 1px solid var(--border-color); overflow: hidden; display: flex; align-items: center; justify-content: center; }
@@ -585,8 +608,6 @@ img {
 .resume-btn-group { display: flex; gap: 15px; flex-wrap: wrap; width: 100%; margin-top: 25px; }
 .resume-btn-group .about-more-btn { margin-top: 0; flex: 1 1 calc(50% - 15px); min-width: 200px; }
 
-
-/* UPDATED: Forced iOS white scrollbar without arrows */
 .card-track {
     display: grid; 
     gap: var(--gap-grid); 
@@ -660,6 +681,7 @@ img {
     position: absolute; 
     top: 25px; 
     left: 25px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .pricing-grid { 
@@ -690,7 +712,6 @@ img {
     padding: 5px 15px; 
     border-radius: var(--pill-radius); 
     font-weight: bold; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .pricing-icon { display: flex; align-items: center; justify-content: center; }
@@ -769,10 +790,9 @@ img {
     height: 100%; 
 }
 
-.quote-icon { position: absolute; top: 25px; right: 25px; }
 .testi-text { font-style: italic; position: relative; z-index: 2; padding-right: 60px; flex-grow: 1; margin-bottom: 25px; }
 .testi-author { display: flex; align-items: center; gap: 15px; }
-.testi-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); }
+.testi-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-block; }
 
 
 /* ======================================================================= */
@@ -780,7 +800,7 @@ img {
 /* ======================================================================= */
 .contact-card { display: flex; min-height: 400px; padding: 40px; gap: 40px; }
 .contact-map { flex: 1; min-width: 300px; border-radius: var(--card-radius); border: 1px solid var(--border-color); overflow: hidden; }
-.contact-map iframe { width: 100%; height: 100%; display: block; pointer-events: auto; } /* Map needs to be interactive */
+.contact-map iframe { width: 100%; height: 100%; display: block; pointer-events: auto; } 
 .contact-info { flex: 1; padding: 0; display: flex; flex-direction: column; justify-content: center; }
 .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
 .contact-item i { width: 30px; text-align: center; }
@@ -833,7 +853,6 @@ img {
 /* ======================================================================= */
 @media (max-width: 992px) {
     
-    /* --- LOCK IMAGES & DISABLE TEXT SELECTION ON MOBILE --- */
     html, body, * {
         -webkit-touch-callout: none !important;
         -webkit-user-select: none !important;
@@ -851,7 +870,6 @@ img {
     }
 
     img {
-        pointer-events: none !important;
         -webkit-touch-callout: none !important;
         -webkit-user-drag: none !important;
     }
@@ -862,6 +880,37 @@ img {
         transform: scale(1) !important;
         transition: none !important;
         animation: none !important;
+    }
+
+    /* FULL MOBILE RESET FOR THE UNIFIED POP RULES */
+    .header-brand-text:active, .nav-name:active, .nav-bio:active, .folder-label:active,
+    .section-title:active, .about-description:active, .approach-text h3:active, .approach-text p:active,
+    .card-info-zone h3:active, .card-info-zone p:active, .service-card h3:active, .service-card p:active,
+    .pricing-card h3:active, .price-tag:active, .pricing-desc p:active, .pricing-features li:active,
+    .testi-text:active, .testi-author h4:active, .testi-author span:active, .contact-info h3:active,
+    .contact-info p:active, .contact-info h4:active, .contact-item span:active, .discord-card h3:active,
+    .discord-card p:active, .grid-footer p:active, .welcome-banner h2:active, .welcome-banner p:active,
+    .info-block h4:active, .info-block p:active, .info-block strong:active, .pricing-badge:active,
+    .pricing-footer p:active, .price-sub:active, .includes-title:active, .please-read-title:active,
+    .quote-icon:active, .pricing-icon:active, .info-icon:active, .discord-logo:active, .contact-item i:active,
+    .header-skull-icon i:active, .header-logo-container img:active, .nav-avatar-container img:active,
+    .skill-tag:active, .service-icon-box:active, .testi-author img:active,
+    .header-brand-text:hover, .nav-name:hover, .nav-bio:hover, .folder-label:hover,
+    .section-title:hover, .about-description:hover, .approach-text h3:hover, .approach-text p:hover,
+    .card-info-zone h3:hover, .card-info-zone p:hover, .service-card h3:hover, .service-card p:hover,
+    .pricing-card h3:hover, .price-tag:hover, .pricing-desc p:hover, .pricing-features li:hover,
+    .testi-text:hover, .testi-author h4:hover, .testi-author span:hover, .contact-info h3:hover,
+    .contact-info p:hover, .contact-info h4:hover, .contact-item span:hover, .discord-card h3:hover,
+    .discord-card p:hover, .grid-footer p:hover, .welcome-banner h2:hover, .welcome-banner p:hover,
+    .info-block h4:hover, .info-block p:hover, .info-block strong:hover, .pricing-badge:hover,
+    .pricing-footer p:hover, .price-sub:hover, .includes-title:hover, .please-read-title:hover,
+    .quote-icon:hover, .pricing-icon:hover, .info-icon:hover, .discord-logo:hover, .contact-item i:hover,
+    .header-skull-icon i:hover, .header-logo-container img:hover, .nav-avatar-container img:hover,
+    .skill-tag:hover, .service-icon-box:hover, .testi-author img:hover {
+        transform: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+        box-shadow: none !important;
     }
 
     .grid-skeleton { grid-template-columns: 1fr; grid-template-areas: "header" "main" "footer"; }
